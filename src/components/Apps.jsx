@@ -73,7 +73,7 @@ const Apps = () => {
 
   return (
     <Grid justifyContent="space-between" sx={{ paddingY: "1rem" }} xs={11} item>
-      <Accordion sx={{ direction: "rtl" }}>
+      <Accordion sx={{ direction: lang === "fa" ? "rtl" : "ltr" }}>
         <AccordionSummary
           expandIcon={<ArrowDropDownIcon />}
           aria-controls="panel-os-content"

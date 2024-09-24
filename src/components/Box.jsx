@@ -1,8 +1,10 @@
 import { Box, Grid, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
+import i18n from "../utils/i18n";
 
 const BoxS = ({ children }) => {
   const theme = useTheme();
+  const language = i18n.language;
 
   return (
     <Grid item container justifyContent="space-around" xs={11}>
@@ -20,7 +22,7 @@ const BoxS = ({ children }) => {
               : "linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.1))",
           backdropFilter: "blur(8px)",
           boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
-          direction: "rtl",
+          direction: language === "fa" ? "rtl" : "ltr",
           width: "100%",
           border: "1px solid #ffffff6b",
         }}
