@@ -1,32 +1,58 @@
-import { Box, Grid } from "@mui/material";
-import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import { Grid, useTheme } from "@mui/material";
+import BoxS from "./Box";
+import { useTranslation } from "react-i18next";
 
 const LogoBox = () => {
+  const theme = useTheme();
+  const { t } = useTranslation();
+
   return (
-    <Grid container justifyContent="space-around" xs={11}>
-      <Box
+    <BoxS>
+      <Grid
+        item
+        xs={3}
+        display="flex"
+        justifyContent="center"
+        sx={{ padding: ".3rem", paddingX: ".5rem" }}
+      >
+        <img
+          src="/vite.svg"
+          alt="Logo"
+          style={{ width: "100%", height: "auto" }}
+        />
+      </Grid>
+      <Grid
+        item
+        xs={9}
+        display="flex"
+        flexDirection={"column"}
+        justifyContent="center"
+        alignItems={"center"}
         sx={{
-          border: "1px",
-          borderRadius: "16px",
-          padding: "1rem",
-          display: "flex",
-          alignItems: "center", // Align items vertically in the center
-          justifyContent: "space-between",
-          backgroundColor: "rgba(255, 255, 255, 0.1)", // Semi-transparent background
-          backdropFilter: "blur(8px)", // Blur effect for glassmorphism
-          boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)", // Soft shadow
-          direction: "rtl", // Right-to-left direction
-          width: "100%"
+          color: theme.palette.mode === "dark" ? "#fff" : "#000",
+          fontSize: "1.2rem",
         }}
       >
-        <Grid item xs={3} display="flex" justifyContent="center">
-          <SupervisedUserCircleIcon fontSize="large" sx={{ color: "#000" }} />
+        <Grid
+          item
+          sx={{
+            color: theme.palette.mode === "dark" ? "#fff" : "#000",
+            fontSize: "1.2rem",
+            paddingBottom: ".7rem",
+          }}
+        >
+          {t("userPanelTitle")}
         </Grid>
-        <Grid item xs={9} display="flex" justifyContent="center" sx={{ color: "#000", fontSize: "1.2rem" }}>
-          پنل کاربری مرزبان
+        <Grid
+          sx={{
+            color: theme.palette.mode === "dark" ? "#ccc" : "#545454",
+            fontSize: ".9rem",
+          }}
+        >
+          {t("userPanelWelcome")}
         </Grid>
-      </Box>
-    </Grid>
+      </Grid>
+    </BoxS>
   );
 };
 

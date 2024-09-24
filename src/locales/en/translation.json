@@ -1,0 +1,21 @@
+{
+  "remaining_volume": "Remaining Volume",
+  "initial_volume": "Initial Volume",
+  "remaining_time": "Remaining Time",
+  "initial_time": "Initial Time",
+  "megabytes": "MB",
+  "gigabytes": "GB",
+  "days": "days",
+  "welcome": "Welcome",
+  "languageSwitchToEnglish": "English",
+  "languageSwitchToPersian": "فارسی",
+  "status": {
+    "active": "Active"
+  },
+  "support": "Support",
+  "userPanelTitle": "Erfan's User Panel",
+  "userPanelWelcome": "Welcome to Erfan's user panel.",
+  "operatingSystems": "Operating Systems",
+  "configuration": "Configuration",
+  "download": "Download"
+}

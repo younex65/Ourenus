@@ -1,0 +1,104 @@
+{
+  "operatingSystems": [
+    {
+      "name": "لینوکس",
+      "engName": "Linux",
+      "osLogo": "/path/to/linux-logo.png",
+      "apps": [
+        {
+          "name": "V2Ray Linux Client 1",
+          "price": "$5.00",
+          "logo": "/path/to/linux-client1-logo.png",
+          "description": "A lightweight V2Ray client for Linux.",
+          "configLink": "http://example.com/linux-client1-config",
+          "downloadLink": "http://example.com/linux-client1-download",
+          "videoLink": "http://example.com/linux-client1-video"
+        },
+        {
+          "name": "V2Ray Linux Client 2",
+          "price": "$7.00",
+          "logo": "/path/to/linux-client2-logo.png",
+          "description": "An advanced V2Ray client for Linux.",
+          "configLink": "http://example.com/linux-client2-config",
+          "downloadLink": "http://example.com/linux-client2-download",
+          "videoLink": "http://example.com/linux-client2-video"
+        }
+      ]
+    },
+    {
+      "name": "ویندوز",
+      "engName": "Windows",
+      "osLogo": "/path/to/windows-logo.png",
+      "apps": [
+        {
+          "name": "V2Ray Windows Client 1",
+          "price": "$6.00",
+          "logo": "/path/to/windows-client1-logo.png",
+          "description": "A fast V2Ray client for Windows.",
+          "configLink": "http://example.com/windows-client1-config",
+          "downloadLink": "http://example.com/windows-client1-download",
+          "videoLink": "http://example.com/windows-client1-video"
+        },
+        {
+          "name": "V2Ray Windows Client 2",
+          "price": "$8.00",
+          "logo": "/path/to/windows-client2-logo.png",
+          "description": "A secure V2Ray client for Windows.",
+          "configLink": "http://example.com/windows-client2-config",
+          "downloadLink": "http://example.com/windows-client2-download",
+          "videoLink": "http://example.com/windows-client2-video"
+        }
+      ]
+    },
+    {
+      "name": "اپل",
+      "engName": "Apple",
+      "osLogo": "/path/to/macos-logo.png",
+      "apps": [
+        {
+          "name": "V2Ray macOS Client 1",
+          "price": "$9.00",
+          "logo": "/path/to/macos-client1-logo.png",
+          "description": "A reliable V2Ray client for macOS.",
+          "configLink": "http://example.com/macos-client1-config",
+          "downloadLink": "http://example.com/macos-client1-download",
+          "videoLink": "http://example.com/macos-client1-video"
+        },
+        {
+          "name": "V2Ray macOS Client 2",
+          "price": "$10.00",
+          "logo": "/path/to/macos-client2-logo.png",
+          "description": "An efficient V2Ray client for macOS.",
+          "configLink": "http://example.com/macos-client2-config",
+          "downloadLink": "http://example.com/macos-client2-download",
+          "videoLink": "http://example.com/macos-client2-video"
+        }
+      ]
+    },
+    {
+      "name": "اندروید",
+      "engName": "Android",
+      "osLogo": "/path/to/android-logo.png",
+      "apps": [
+        {
+          "name": "V2Ray Android Client 1",
+          "price": "$4.00",
+          "logo": "/path/to/android-client1-logo.png",
+          "description": "A simple V2Ray client for Android.",
+          "configLink": "http://example.com/android-client1-config",
+          "downloadLink": "http://example.com/android-client1-download",
+          "videoLink": "http://example.com/android-client1-video"
+        },
+        {
+          "name": "V2Ray Android Client 2",
+          "price": "$5.00",
+          "logo": "/path/to/android-client2-logo.png",
+          "description": "A powerful V2Ray client for Android.",
+          "configLink": "http://example.com/android-client2-config",
+          "downloadLink": "http://example.com/android-client2-download",
+          "videoLink": "http://example.com/android-client2-video"
+        }
+      ]
+    }
+  ]
+}

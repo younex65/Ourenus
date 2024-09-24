@@ -1,0 +1,22 @@
+{
+  "remaining_volume": "حجم باقیمانده شما",
+  "initial_volume": "حجم اولیه شما",
+  "remaining_time": "زمان باقیمانده شما",
+  "initial_time": "زمان اولیه شما",
+  "megabytes": "مگابایت",
+  "gigabytes": "گیگابایت",
+  "days": "روز",
+  "welcome": "خوش آمدید",
+  "languageSwitchToEnglish": "English",
+  "languageSwitchToPersian": "فارسی",
+  "username": "عرفان جب",
+  "status": {
+    "active": "فعال"
+  },
+  "support": "پشتیبانی",
+  "userPanelTitle": "پنل کاربری عرفان",
+  "userPanelWelcome": "به پنل کاربری عرفان خوش آمدید.",
+  "operatingSystems": "سیستم عامل ها",
+  "configuration": "پیکربندی",
+  "download": "دانلود"
+}
