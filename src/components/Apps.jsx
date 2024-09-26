@@ -180,7 +180,7 @@ const Apps = () => {
   const theme = useTheme().palette.mode;
 
   useEffect(() => {
-    fetch("/os.json")
+    fetch(import.meta.env.VITE_JSON_APPS_URL)
       .then((response) => response.json())
       .then((data) => setOperatingSystems(data.operatingSystems));
   }, []);
