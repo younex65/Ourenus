@@ -80,9 +80,9 @@ const renderAppAccordion = (app, index, lang, theme, t) => {
             alignItems="center"
           >
             <img
-              src={app.logo || errorLogo}
+              src={app.logo}
               alt={`${app.name} logo`}
-              style={{ width: "30px", height: "auto" }}
+              style={{ width: "30px", height: "auto", borderRadius: "20%" }}
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = errorLogo;
@@ -233,9 +233,12 @@ const Apps = () => {
                 <Grid container alignItems="center">
                   <Grid item xs={1} display="flex" justifyContent="center">
                     <img
-                      src={os.osLogo || errorLogo}
+                      src={os.osLogo}
                       alt={`${os.name} logo`}
-                      style={{ width: "30px", height: "auto" }}
+                      style={{
+                        width: "30px",
+                        height: "auto",
+                      }}
                       onError={(e) => {
                         e.target.onerror = null;
                         e.target.src = errorLogo;
