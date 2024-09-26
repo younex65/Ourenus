@@ -63,7 +63,7 @@ const getTheme = (isDarkMode) =>
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            // backgroundImage: `url("/web-1920.png")`,
+            backgroundImage: isDarkMode ? "" : `url("/web-1920.png")`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center",
@@ -84,6 +84,20 @@ const getTheme = (isDarkMode) =>
             "&:hover": {
               background: "rgba(0, 0, 0, 0.1)",
             },
+          },
+        },
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily: "'Vazirmatn', sans-serif",
+          },
+        },
+      },
+      MuiGrid: {
+        styleOverrides: {
+          root: {
+            fontFamily: "'Vazirmatn', sans-serif",
           },
         },
       },

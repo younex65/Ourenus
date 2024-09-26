@@ -11,7 +11,7 @@ import QrModal from "./QrModal";
 
 const SwitchButtons = ({ setIsDarkMode }) => {
   const theme = useTheme();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const [themeMode, setThemeMode] = useState("روشن");
   const [openQrModal, setOpenQrModal] = useState(false);
@@ -116,8 +116,9 @@ const SwitchButtons = ({ setIsDarkMode }) => {
       <QrModal
         open={openQrModal}
         handleClose={handleQrModalClose}
-        title={"My QR Code"}
+        title={t("subQRCode")}
         link={qrLink}
+        id="switch"
       />
     </>
   );

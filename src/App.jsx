@@ -17,6 +17,7 @@ import {
   calculateUsedTimePercentage,
   formatTraffic,
 } from "./utils/Helper";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -71,13 +72,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Grid
-        container
-        justifyContent={"center"}
-        sx={{
-          fontFamily: "'Vazirmatn', sans-serif",
-        }}
-      >
+      <Grid container justifyContent={"center"}>
         {loading ? (
           <div
             style={{
@@ -163,6 +158,19 @@ function App() {
             </>
           )
         )}
+        <ToastContainer
+          position="top-right"
+          theme="colored"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={true}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{ marginTop: "1rem", width: "80%", borderRadius: "16px" }}
+        />
       </Grid>
     </ThemeProvider>
   );

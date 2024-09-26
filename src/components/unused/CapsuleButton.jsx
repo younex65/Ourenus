@@ -19,7 +19,6 @@ const CapsuleButton = ({ isActive, onClick, icon }) => {
           : theme.palette.mode === "dark"
           ? "rgba(255, 255, 255, 0.45)"
           : "rgba(121, 124, 146, 0.45)",
-        fontFamily: "'Vazirmatn', sans-serif",
         textTransform: "capitalize",
       }}
     >

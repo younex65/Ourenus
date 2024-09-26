@@ -22,6 +22,7 @@
   "operatingSystems": "Operating Systems",
   "configuration": "Add to App",
   "download": "Download",
+  "watchVideo": "Watch Tutorial Video",
   "configsList": "Configs List",
   "emergancyList": "Emergancy Configs",
   "linkCopied": "Link Copied",
@@ -36,5 +37,7 @@
   "GB": "GB",
   "TB": "TB",
   "negative": "Negative",
-  "infinity": "Infinity"
+  "infinity": "Infinity",
+  "subQRCode": "Subscribtion QR Code",
+  "free": "Free"
 }

@@ -7,27 +7,30 @@
       "apps": [
         {
           "name": "Streisand",
-          "price": "Free",
+          "price": "0",
           "logo": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Streisand.png",
           "description": "Streisand sets up a new server running a wide variety of anti-censorship software.",
+          "faDescription": "استرایزند یک سرور جدید با نرم‌افزارهای متنوع ضد سانسور راه‌اندازی می‌کند.",
           "configLink": "https://example.com/streisand-config",
           "downloadLink": "https://example.com/streisand-download",
           "videoLink": "https://example.com/streisand-video"
         },
         {
           "name": "V2Box",
-          "price": "Free",
+          "price": "0",
           "logo": "/path/to/v2box-logo.png",
           "description": "A cross-platform V2Ray client.",
+          "faDescription": "V2Box یک کلاینت V2Ray چندسکویی است.",
           "configLink": "https://example.com/v2box-config",
           "downloadLink": "https://example.com/v2box-download",
           "videoLink": "https://example.com/v2box-video"
         },
         {
           "name": "NekoRay",
-          "price": "Free",
+          "price": "0",
           "logo": "/path/to/nekoray-logo.png",
           "description": "A cross-platform GUI client for V2Ray.",
+          "faDescription": "NekoRay یک کلاینت GUI چندسکویی برای V2Ray است.",
           "configLink": "https://example.com/nekoray-config",
           "downloadLink": "https://example.com/nekoray-download",
           "videoLink": "https://example.com/nekoray-video"
@@ -41,18 +44,20 @@
       "apps": [
         {
           "name": "v2rayN",
-          "price": "Free",
+          "price": "0",
           "logo": "https://upload.wikimedia.org/wikipedia/commons/2/24/V2rayN.png",
           "description": "A Windows V2Ray client with GUI support.",
+          "faDescription": "v2rayN یک کلاینت V2Ray برای ویندوز با پشتیبانی از رابط کاربری است.",
           "configLink": "https://example.com/v2rayn-config",
           "downloadLink": "https://example.com/v2rayn-download",
           "videoLink": "https://example.com/v2rayn-video"
         },
         {
           "name": "Sing-box",
-          "price": "Free",
+          "price": "0",
           "logo": "/path/to/sing-box-logo.png",
           "description": "A client that provides a platform for routing traffic securely.",
+          "faDescription": "Sing-box یک کلاینت برای مسیریابی امن ترافیک فراهم می‌کند.",
           "configLink": "https://example.com/sing-box-config",
           "downloadLink": "https://example.com/sing-box-download",
           "videoLink": "https://example.com/sing-box-video"
@@ -66,18 +71,20 @@
       "apps": [
         {
           "name": "Shadowrocket",
-          "price": "$2.99",
+          "price": "2.99",
           "logo": "https://example.com/shadowrocket-logo.png",
           "description": "A rule-based proxy utility client for iOS.",
+          "faDescription": "Shadowrocket یک ابزار پروکسی قانون‌محور برای iOS است.",
           "configLink": "https://example.com/shadowrocket-config",
           "downloadLink": "https://example.com/shadowrocket-download",
           "videoLink": "https://example.com/shadowrocket-video"
         },
         {
           "name": "FairVPN",
-          "price": "$1.99/month",
+          "price": "1.99",
           "logo": "/path/to/fairvpn-logo.png",
           "description": "A privacy-focused VPN solution for iOS.",
+          "faDescription": "FairVPN یک راهکار VPN متمرکز بر حریم خصوصی برای iOS است.",
           "configLink": "https://example.com/fairvpn-config",
           "downloadLink": "https://example.com/fairvpn-download",
           "videoLink": "https://example.com/fairvpn-video"
@@ -91,18 +98,20 @@
       "apps": [
         {
           "name": "V2rayNG",
-          "price": "Free",
+          "price": "0",
           "logo": "/path/to/v2rayng-logo.png",
           "description": "A V2Ray client for Android devices.",
+          "faDescription": "V2rayNG یک کلاینت V2Ray برای دستگاه‌های اندرویدی است.",
           "configLink": "https://example.com/v2rayng-config",
           "downloadLink": "https://example.com/v2rayng-download",
           "videoLink": "https://example.com/v2rayng-video"
         },
         {
           "name": "Stash",
-          "price": "$3.99",
+          "price": "3.99",
           "logo": "/path/to/stash-logo.png",
           "description": "An advanced proxy utility for Android.",
+          "faDescription": "Stash یک ابزار پروکسی پیشرفته برای اندروید است.",
           "configLink": "https://example.com/stash-config",
           "downloadLink": "https://example.com/stash-download",
           "videoLink": "https://example.com/stash-video"

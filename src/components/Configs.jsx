@@ -33,7 +33,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(null);
   const [link, setLink] = useState("");
-  const [modalTitle, setModalTitle] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
 
   const handleOpen = (title, link, index) => {
     setOpen(true);
@@ -64,7 +64,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
                 {icon}
               </Grid>
               <Grid item xs={10} display="flex" justifyContent="center">
-                <Typography fontFamily={"vazirmatn"}>{title}</Typography>
+                <Typography>{title}</Typography>
               </Grid>
             </Grid>
           </AccordionSummary>
@@ -84,9 +84,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
                       gap={".3rem"}
                     >
                       <Grid item>
-                        <Typography fontFamily={"vazirmatn"}>
-                          {title}
-                        </Typography>
+                        <Typography>{title}</Typography>
                       </Grid>
                       <Grid item display={"flex"} gap={".5rem"}>
                         <QrCodeIcon
@@ -140,7 +138,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
         title={modalTitle}
         link={link}
         index={index}
-        id={2}
+        id="clist"
       />
     </>
   );

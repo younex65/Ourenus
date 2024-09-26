@@ -2,8 +2,11 @@ import { Modal, Fade, Backdrop, Box, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import QRCode from "react-qr-code";
 import { handleCopyToClipboard } from "../utils/Helper";
+import { useTheme } from "@emotion/react";
 
 const QrModal = ({ open, handleClose, title, link, id }) => {
+  const isDarkMode = useTheme().palette.mode === "dark";
+
   return (
     <Modal
       aria-labelledby={`qr-modal-title-${id}`}
@@ -41,7 +44,9 @@ const QrModal = ({ open, handleClose, title, link, id }) => {
             component="h2"
             style={{
               marginBottom: ".8rem",
-              background: "rgba(214, 197, 221, 0.8)",
+              background: isDarkMode
+                ? "rgba(32, 37, 76, 0.76)"
+                : "rgb(123 136 220 / 65%)",
               borderRadius: "8px",
               backdropFilter: "blur(8px)",
             }}
@@ -52,8 +57,13 @@ const QrModal = ({ open, handleClose, title, link, id }) => {
             value={link}
             cursor={"pointer"}
             bgColor={"transparent"}
+            fgColor={isDarkMode ? "#ffffff" : "#000"}
+            style={{
+              border: "1px solid #ffffff6b",
+              padding: "1rem",
+              borderRadius: "8px",
+            }}
             onClick={() => handleCopyToClipboard(link)}
-            id={2}
           />
         </Box>
       </Fade>

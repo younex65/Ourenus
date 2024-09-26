@@ -23,6 +23,7 @@
   "operatingSystems": "سیستم عامل ها",
   "configuration": "افرودن به برنامه",
   "download": "دانلود",
+  "watchVideo": "تماشای ویدیو آموزش",
   "configsList": "لیست کانفیگ ها",
   "emergancyList": "کانفیگ های اضطراری",
   "linkCopied": "لینک کپی شد",
@@ -37,5 +38,7 @@
   "TB": "ترابایت",
   "negative": "منفی",
   "infinity": "نامحدود",
-  "copyAll": "کپی همه"
+  "copyAll": "کپی همه",
+  "subQRCode": " کیوآر کد لینک ساب",
+  "free": "رایگان"
 }

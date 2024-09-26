@@ -72,7 +72,6 @@ const UsageBox = ({ type, value, total, remaining }) => {
             textAlign: "center",
             fontWeight: "600",
           }}
-          fontFamily={"vazirmatn"}
           fontWeight={"lighter"}
         >
           {remainingLabel}
@@ -87,15 +86,10 @@ const UsageBox = ({ type, value, total, remaining }) => {
           textAlign={"center"}
           sx={{ gap: ".3rem" }}
         >
-          <Typography
-            variant="p"
-            component="div"
-            fontSize={"small"}
-            fontFamily={"vazirmatn"}
-          >
+          <Typography variant="p" component="div" fontSize={"small"}>
             {totaltitle}
           </Typography>
-          <Typography variant="h6" component="div" fontFamily={"vazirmatn"}>
+          <Typography variant="h6" component="div">
             {totalLabel}
           </Typography>
         </Grid>
