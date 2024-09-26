@@ -3,10 +3,42 @@ import BoxS from "./Box";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
-const UserBox = () => {
+const UserBox = ({ data }) => {
   const theme = useTheme();
   const { t } = useTranslation();
+
+  const getStatusBackgroundColor = (status) => {
+    switch (status) {
+      case "active":
+        return theme.palette.mode === "dark"
+          ? "rgb(26, 41, 39)"
+          : "rgb(226 241 239)";
+      case "expired":
+        return "red";
+      case "on_hold":
+        return "purple";
+      case "disabled":
+        return "black";
+      default:
+        return "transparent";
+    }
+  };
+
+  const getStatusTextColor = (status) => {
+    switch (status) {
+      case "active":
+        return theme.palette.mode === "dark" ? "#88c0a6" : "rgb(108 185 173)";
+      case "expired":
+      case "on_hold":
+        return "#fff";
+      case "disabled":
+        return "#999";
+      default:
+        return theme.palette.text.primary;
+    }
+  };
 
   return (
     <BoxS>
@@ -47,21 +79,15 @@ const UserBox = () => {
           xs={12}
           textAlign={"start"}
         >
-          Erfan Jab
+          {data?.username}
         </Grid>
         <Grid item display={"flex"} xs={12} justifyContent={"space-around"}>
           <Grid xs={5} textAlign={"center"} item>
             <Button
               sx={{
                 borderRadius: "50px",
-                backgroundColor:
-                  theme.palette.mode === "dark"
-                    ? "rgb(26, 41, 39)"
-                    : "rgb(226 241 239)",
-                color:
-                  theme.palette.mode === "dark"
-                    ? "#88c0a6"
-                    : "rgb(108 185 173)",
+                backgroundColor: getStatusBackgroundColor(data?.status),
+                color: getStatusTextColor(data?.status),
                 fontFamily: "'Vazirmatn', sans-serif",
                 textTransform: "capitalize",
                 boxShadow: "0 0 3px 0px #99bbaf",
@@ -69,7 +95,7 @@ const UserBox = () => {
                 fontWeight: "bold",
               }}
             >
-              {t("status.active")}
+              {t(`status.${data?.status}`)}
             </Button>
           </Grid>
           <Grid item xs={7} textAlign={"center"}>
@@ -99,6 +125,13 @@ const UserBox = () => {
       </Grid>
     </BoxS>
   );
+};
+
+UserBox.propTypes = {
+  data: PropTypes.shape({
+    username: PropTypes.string,
+    status: PropTypes.string,
+  }).isRequired,
 };
 
 export default UserBox;

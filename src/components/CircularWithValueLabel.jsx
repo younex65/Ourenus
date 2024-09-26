@@ -22,15 +22,26 @@ function CircularProgressWithLabel({ value }) {
   );
 
   const getStyles = (value) => {
-    if (value <= 35) {
+    if (value === Infinity) {
       return {
-        gradientColors: theme.colors.gradients.low.colors,
+        gradientColors: theme.colors.gradients.high.colors,
         backgroundColor:
           theme.palette.mode === "dark"
-            ? "rgba(255, 102, 102, 0.2)"
-            : theme.colors.gradients.low.background,
+            ? "rgba(144, 238, 144, 0.2)"
+            : theme.colors.gradients.high.background,
         typographyGradient:
-          "linear-gradient(0deg, rgba(255, 102, 102, 1), rgba(153, 0, 0, 1))",
+          "linear-gradient(0deg, rgba(144, 238, 144, 1), rgba(0, 100, 0, 1))",
+      };
+    }
+    if (value <= 30 || value > 100) {
+      return {
+        gradientColors: theme.colors.gradients.high.colors,
+        backgroundColor:
+          theme.palette.mode === "dark"
+            ? "rgba(144, 238, 144, 0.2)"
+            : theme.colors.gradients.high.background,
+        typographyGradient:
+          "linear-gradient(0deg, rgba(144, 238, 144, 1), rgba(0, 100, 0, 1))",
       };
     } else if (value <= 70) {
       return {
@@ -44,16 +55,19 @@ function CircularProgressWithLabel({ value }) {
       };
     } else {
       return {
-        gradientColors: theme.colors.gradients.high.colors,
+        gradientColors: theme.colors.gradients.low.colors,
         backgroundColor:
           theme.palette.mode === "dark"
-            ? "rgba(144, 238, 144, 0.2)"
-            : theme.colors.gradients.high.background,
+            ? "rgba(255, 102, 102, 0.2)"
+            : theme.colors.gradients.low.background,
         typographyGradient:
-          "linear-gradient(0deg, rgba(144, 238, 144, 1), rgba(0, 100, 0, 1))",
+          "linear-gradient(0deg, rgba(255, 102, 102, 1), rgba(153, 0, 0, 1))",
       };
     }
   };
+
+  const processedValue =
+    value === Infinity ? 0 : value > 100 ? 100 : value > 0 ? value : 0;
 
   const { gradientColors, backgroundColor, typographyGradient } =
     getStyles(value);
@@ -62,7 +76,7 @@ function CircularProgressWithLabel({ value }) {
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <CircularProgress
         variant="determinate"
-        value={value}
+        value={processedValue}
         size={85}
         sx={{
           color: "transparent",
@@ -106,7 +120,7 @@ function CircularProgressWithLabel({ value }) {
             textAlign: "center",
           }}
         >
-          {`${Math.round(value)}%`}
+          {`${Math.round(processedValue)}%`}
         </Typography>
       </Box>
 

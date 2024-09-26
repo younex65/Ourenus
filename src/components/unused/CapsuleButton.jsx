@@ -2,7 +2,7 @@ import { Button, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 
 const CapsuleButton = ({ isActive, onClick, icon }) => {
-  const theme = useTheme(); // Access the current theme
+  const theme = useTheme(); 
 
   return (
     <Button
@@ -14,12 +14,12 @@ const CapsuleButton = ({ isActive, onClick, icon }) => {
         backgroundColor: "transparent",
         color: isActive
           ? theme.palette.mode === "dark"
-            ? "rgb(200, 200, 255)" // Active color for dark mode
-            : "rgb(82, 88, 125)" // Active color for light mode
+            ? "rgb(200, 200, 255)"
+            : "rgb(82, 88, 125)"
           : theme.palette.mode === "dark"
-          ? "rgba(255, 255, 255, 0.45)" // Inactive color for dark mode
-          : "rgba(121, 124, 146, 0.45)", // Inactive color for light mode
-        fontFamily: "'Vazirmatn', sans-serif", // Use the Farsi font
+          ? "rgba(255, 255, 255, 0.45)"
+          : "rgba(121, 124, 146, 0.45)",
+        fontFamily: "'Vazirmatn', sans-serif",
         textTransform: "capitalize",
       }}
     >

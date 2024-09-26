@@ -10,10 +10,9 @@ const RadioButtons = ({ setIsDarkMode }) => {
   const [language, setLanguage] = useState("فارسی");
   const [theme, setTheme] = useState("روشن");
 
-  // Function to handle theme toggle
   const handleThemeChange = (newTheme) => {
     setTheme(newTheme);
-    setIsDarkMode(newTheme === "تیره"); // Update dark mode when the theme is "تیره"
+    setIsDarkMode(newTheme === "تیره");
   };
 
   return (
@@ -24,7 +23,6 @@ const RadioButtons = ({ setIsDarkMode }) => {
       sx={{ paddingY: "1rem" }}
       xs={11}
     >
-      {/* Language Buttons */}
       <Grid
         item
         xs={4}
@@ -41,7 +39,6 @@ const RadioButtons = ({ setIsDarkMode }) => {
           border: "1px solid rgba(255, 255, 255, 0.2)",
         }}
       >
-        {/* Sliding background */}
         <div
           style={{
             position: "absolute",
@@ -67,8 +64,6 @@ const RadioButtons = ({ setIsDarkMode }) => {
           icon={<US style={{ borderRadius: "50px" }} />}
         />
       </Grid>
-
-      {/* Theme Buttons */}
       <Grid
         item
         xs={4}
@@ -86,7 +81,6 @@ const RadioButtons = ({ setIsDarkMode }) => {
           border: "1px solid #ffffff6b",
         }}
       >
-        {/* Sliding background */}
         <div
           style={{
             position: "absolute",

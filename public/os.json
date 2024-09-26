@@ -3,102 +3,112 @@
     {
       "name": "لینوکس",
       "engName": "Linux",
-      "osLogo": "/path/to/linux-logo.png",
+      "osLogo": "https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png",
       "apps": [
         {
-          "name": "V2Ray Linux Client 1",
-          "price": "$5.00",
-          "logo": "/path/to/linux-client1-logo.png",
-          "description": "A lightweight V2Ray client for Linux.",
-          "configLink": "http://example.com/linux-client1-config",
-          "downloadLink": "http://example.com/linux-client1-download",
-          "videoLink": "http://example.com/linux-client1-video"
+          "name": "Streisand",
+          "price": "Free",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Streisand.png",
+          "description": "Streisand sets up a new server running a wide variety of anti-censorship software.",
+          "configLink": "https://example.com/streisand-config",
+          "downloadLink": "https://example.com/streisand-download",
+          "videoLink": "https://example.com/streisand-video"
         },
         {
-          "name": "V2Ray Linux Client 2",
-          "price": "$7.00",
-          "logo": "/path/to/linux-client2-logo.png",
-          "description": "An advanced V2Ray client for Linux.",
-          "configLink": "http://example.com/linux-client2-config",
-          "downloadLink": "http://example.com/linux-client2-download",
-          "videoLink": "http://example.com/linux-client2-video"
+          "name": "V2Box",
+          "price": "Free",
+          "logo": "/path/to/v2box-logo.png",
+          "description": "A cross-platform V2Ray client.",
+          "configLink": "https://example.com/v2box-config",
+          "downloadLink": "https://example.com/v2box-download",
+          "videoLink": "https://example.com/v2box-video"
+        },
+        {
+          "name": "NekoRay",
+          "price": "Free",
+          "logo": "/path/to/nekoray-logo.png",
+          "description": "A cross-platform GUI client for V2Ray.",
+          "configLink": "https://example.com/nekoray-config",
+          "downloadLink": "https://example.com/nekoray-download",
+          "videoLink": "https://example.com/nekoray-video"
         }
       ]
     },
     {
       "name": "ویندوز",
       "engName": "Windows",
-      "osLogo": "/path/to/windows-logo.png",
+      "osLogo": "https://upload.wikimedia.org/wikipedia/commons/4/48/Windows_logo_-_2021.svg",
       "apps": [
         {
-          "name": "V2Ray Windows Client 1",
-          "price": "$6.00",
-          "logo": "/path/to/windows-client1-logo.png",
-          "description": "A fast V2Ray client for Windows.",
-          "configLink": "http://example.com/windows-client1-config",
-          "downloadLink": "http://example.com/windows-client1-download",
-          "videoLink": "http://example.com/windows-client1-video"
+          "name": "v2rayN",
+          "price": "Free",
+          "logo": "https://upload.wikimedia.org/wikipedia/commons/2/24/V2rayN.png",
+          "description": "A Windows V2Ray client with GUI support.",
+          "configLink": "https://example.com/v2rayn-config",
+          "downloadLink": "https://example.com/v2rayn-download",
+          "videoLink": "https://example.com/v2rayn-video"
         },
         {
-          "name": "V2Ray Windows Client 2",
-          "price": "$8.00",
-          "logo": "/path/to/windows-client2-logo.png",
-          "description": "A secure V2Ray client for Windows.",
-          "configLink": "http://example.com/windows-client2-config",
-          "downloadLink": "http://example.com/windows-client2-download",
-          "videoLink": "http://example.com/windows-client2-video"
+          "name": "Sing-box",
+          "price": "Free",
+          "logo": "/path/to/sing-box-logo.png",
+          "description": "A client that provides a platform for routing traffic securely.",
+          "configLink": "https://example.com/sing-box-config",
+          "downloadLink": "https://example.com/sing-box-download",
+          "videoLink": "https://example.com/sing-box-video"
         }
       ]
     },
     {
       "name": "اپل",
       "engName": "Apple",
-      "osLogo": "/path/to/macos-logo.png",
+      "osLogo": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
       "apps": [
         {
-          "name": "V2Ray macOS Client 1",
-          "price": "$9.00",
-          "logo": "/path/to/macos-client1-logo.png",
-          "description": "A reliable V2Ray client for macOS.",
-          "configLink": "http://example.com/macos-client1-config",
-          "downloadLink": "http://example.com/macos-client1-download",
-          "videoLink": "http://example.com/macos-client1-video"
+          "name": "Shadowrocket",
+          "price": "$2.99",
+          "logo": "https://example.com/shadowrocket-logo.png",
+          "description": "A rule-based proxy utility client for iOS.",
+          "configLink": "https://example.com/shadowrocket-config",
+          "downloadLink": "https://example.com/shadowrocket-download",
+          "videoLink": "https://example.com/shadowrocket-video"
         },
         {
-          "name": "V2Ray macOS Client 2",
-          "price": "$10.00",
-          "logo": "/path/to/macos-client2-logo.png",
-          "description": "An efficient V2Ray client for macOS.",
-          "configLink": "http://example.com/macos-client2-config",
-          "downloadLink": "http://example.com/macos-client2-download",
-          "videoLink": "http://example.com/macos-client2-video"
+          "name": "FairVPN",
+          "price": "$1.99/month",
+          "logo": "/path/to/fairvpn-logo.png",
+          "description": "A privacy-focused VPN solution for iOS.",
+          "configLink": "https://example.com/fairvpn-config",
+          "downloadLink": "https://example.com/fairvpn-download",
+          "videoLink": "https://example.com/fairvpn-video"
         }
       ]
     },
     {
       "name": "اندروید",
       "engName": "Android",
-      "osLogo": "/path/to/android-logo.png",
+      "osLogo": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Android_logo_2019.svg",
       "apps": [
         {
-          "name": "V2Ray Android Client 1",
-          "price": "$4.00",
-          "logo": "/path/to/android-client1-logo.png",
-          "description": "A simple V2Ray client for Android.",
-          "configLink": "http://example.com/android-client1-config",
-          "downloadLink": "http://example.com/android-client1-download",
-          "videoLink": "http://example.com/android-client1-video"
+          "name": "V2rayNG",
+          "price": "Free",
+          "logo": "/path/to/v2rayng-logo.png",
+          "description": "A V2Ray client for Android devices.",
+          "configLink": "https://example.com/v2rayng-config",
+          "downloadLink": "https://example.com/v2rayng-download",
+          "videoLink": "https://example.com/v2rayng-video"
         },
         {
-          "name": "V2Ray Android Client 2",
-          "price": "$5.00",
-          "logo": "/path/to/android-client2-logo.png",
-          "description": "A powerful V2Ray client for Android.",
-          "configLink": "http://example.com/android-client2-config",
-          "downloadLink": "http://example.com/android-client2-download",
-          "videoLink": "http://example.com/android-client2-video"
+          "name": "Stash",
+          "price": "$3.99",
+          "logo": "/path/to/stash-logo.png",
+          "description": "An advanced proxy utility for Android.",
+          "configLink": "https://example.com/stash-config",
+          "downloadLink": "https://example.com/stash-download",
+          "videoLink": "https://example.com/stash-video"
         }
       ]
     }
   ]
 }
+  

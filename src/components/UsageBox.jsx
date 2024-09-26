@@ -9,12 +9,14 @@ const UsageBox = ({ type, value, total, remaining }) => {
   const { t } = useTranslation();
 
   const getTypographyGradient = (v) => {
-    if (v <= 35) {
-      return `linear-gradient(0deg, ${theme.palette.error.main}, ${theme.palette.error.dark})`;
+    if (v === Infinity) {
+      return `linear-gradient(0deg, ${theme.palette.success.main}, ${theme.palette.success.dark})`;
+    } else if (v <= 30 || v > 100) {
+      return `linear-gradient(0deg, ${theme.palette.success.main}, ${theme.palette.success.dark})`;
     } else if (v <= 70) {
       return `linear-gradient(0deg, ${theme.palette.warning.main}, ${theme.palette.warning.dark})`;
     } else {
-      return `linear-gradient(0deg, ${theme.palette.success.main}, ${theme.palette.success.dark})`;
+      return `linear-gradient(0deg, ${theme.palette.error.main}, ${theme.palette.error.dark})`;
     }
   };
 
@@ -22,15 +24,15 @@ const UsageBox = ({ type, value, total, remaining }) => {
     usage: {
       title: t("remaining_volume"),
       totaltitle: t("initial_volume"),
-      remaining: `${remaining} ${t("megabytes")}`,
-      total: `${total} ${t("gigabytes")}`,
+      remaining: remaining,
+      total: total,
       unit: t("gigabytes"),
     },
     time: {
       title: t("remaining_time"),
       totaltitle: t("initial_time"),
-      remaining: `${remaining} ${t("days")}`,
-      total: `${total} ${t("days")}`,
+      remaining: remaining,
+      total: total,
       unit: t("days"),
     },
   };
@@ -50,7 +52,7 @@ const UsageBox = ({ type, value, total, remaining }) => {
 
       <Grid
         item
-        xs={4}
+        xs={type === "usage" ? 4 : 8}
         display="flex"
         flexDirection={"column"}
         textAlign={"center"}
@@ -60,7 +62,7 @@ const UsageBox = ({ type, value, total, remaining }) => {
           {title}
         </Typography>
         <Typography
-          variant="h5"
+          variant="h6"
           component="div"
           sx={{
             background: getTypographyGradient(value),
@@ -76,27 +78,28 @@ const UsageBox = ({ type, value, total, remaining }) => {
           {remainingLabel}
         </Typography>
       </Grid>
-
-      <Grid
-        item
-        xs={4}
-        display="flex"
-        flexDirection={"column"}
-        textAlign={"center"}
-        sx={{ gap: ".3rem" }}
-      >
-        <Typography
-          variant="p"
-          component="div"
-          fontSize={"small"}
-          fontFamily={"vazirmatn"}
+      {type === "usage" && (
+        <Grid
+          item
+          xs={4}
+          display="flex"
+          flexDirection={"column"}
+          textAlign={"center"}
+          sx={{ gap: ".3rem" }}
         >
-          {totaltitle}
-        </Typography>
-        <Typography variant="h6" component="div" fontFamily={"vazirmatn"}>
-          {totalLabel}
-        </Typography>
-      </Grid>
+          <Typography
+            variant="p"
+            component="div"
+            fontSize={"small"}
+            fontFamily={"vazirmatn"}
+          >
+            {totaltitle}
+          </Typography>
+          <Typography variant="h6" component="div" fontFamily={"vazirmatn"}>
+            {totalLabel}
+          </Typography>
+        </Grid>
+      )}
     </BoxS>
   );
 };
@@ -104,8 +107,8 @@ const UsageBox = ({ type, value, total, remaining }) => {
 UsageBox.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  remaining: PropTypes.number.isRequired,
+  total: PropTypes.string,
+  remaining: PropTypes.string.isRequired,
 };
 
 export default UsageBox;

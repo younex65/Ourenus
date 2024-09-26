@@ -1,6 +1,6 @@
 {
-  "remaining_volume": "Remaining Volume",
-  "initial_volume": "Initial Volume",
+  "remaining_volume": "Remaining Traffic",
+  "initial_volume": "Initial Traffic",
   "remaining_time": "Remaining Time",
   "initial_time": "Initial Time",
   "megabytes": "MB",
@@ -10,12 +10,31 @@
   "languageSwitchToEnglish": "English",
   "languageSwitchToPersian": "فارسی",
   "status": {
-    "active": "Active"
+    "active": "Active",
+    "expired": "Expired",
+    "on_hold": "On Hold",
+    "disabled": "Disabled",
+    "limited": "Limited"
   },
   "support": "Support",
   "userPanelTitle": "Erfan's User Panel",
   "userPanelWelcome": "Welcome to Erfan's user panel.",
   "operatingSystems": "Operating Systems",
-  "configuration": "Configuration",
-  "download": "Download"
+  "configuration": "Add to App",
+  "download": "Download",
+  "configsList": "Configs List",
+  "emergancyList": "Emergancy Configs",
+  "linkCopied": "Link Copied",
+  "expired": "Expired",
+  "hours": "hours",
+  "minutes": "minutes",
+  "years": "years",
+  "copyAll": "Copy All",
+  "B": "B",
+  "KB": "KB",
+  "MB": "MB",
+  "GB": "GB",
+  "TB": "TB",
+  "negative": "Negative",
+  "infinity": "Infinity"
 }

@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 
-// Define your gradient and RGB colors here
 const colors = {
   gradients: {
     light:
@@ -33,25 +32,26 @@ const getTheme = (isDarkMode) =>
       mode: isDarkMode ? "dark" : "light",
       background: {
         default: isDarkMode ? "#121212" : "#ffffff",
-        paper: "transparent", // Make the paper components transparent to see the background
+        paper: "transparent",
       },
     },
     components: {
       MuiAccordion: {
         styleOverrides: {
           root: {
-            backdropFilter: "blur(8px)", // Glassmorphism
-            borderRadius: "16px",
-            boxShadow: `0 0 30px 10px ${
-              isDarkMode ? colors.rgb.darkShadow : colors.rgb.lightShadow
-            }`,
-            background: isDarkMode
-              ? colors.gradients.dark
-              : colors.gradients.light,
-            border: "1px solid #ffffff6b",
+            backdropFilter: "blur(8px)",
+            borderRadius: "16px !important",
+            border: isDarkMode ? "1px solid #ffffff6b" : "",
+            color: isDarkMode ? "#000" : "#fff",
+            fontWeight: "bold",
+            fontFamily: "'Vazirmatn', sans-serif",
+            "&:before": {
+              display: "none",
+            },
           },
         },
       },
+
       MuiButton: {
         styleOverrides: {
           root: {
@@ -63,10 +63,27 @@ const getTheme = (isDarkMode) =>
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            // backgroundImage: `url("/web-1920.png")`, // Set the background image
-            backgroundSize: "cover", // Make sure the image covers the whole page
-            backgroundRepeat: "no-repeat", // Avoid repeating the background
-            backgroundPosition: "center center", // Center the image
+            // backgroundImage: `url("/web-1920.png")`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center",
+          },
+        },
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            cursor: "pointer",
+            direction: "ltr",
+            marginBottom: ".5rem",
+            backdropFilter: "blur(8px)",
+            borderRadius: "12px !important",
+            border: "1px solid #48444a4f",
+            fontWeight: "bold",
+            fontFamily: "'Vazirmatn', sans-serif",
+            "&:hover": {
+              background: "rgba(0, 0, 0, 0.1)",
+            },
           },
         },
       },

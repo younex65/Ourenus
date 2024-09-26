@@ -1,15 +1,3 @@
-html {
-  /* background: linear-gradient(45deg, rgb(195 194 235) 0%, rgb(255 255 255) 88%); */
-  /* background-attachment: fixed; */
-}
-
-html {
-  background-image: url("/web-1920.png");
-  background-size: cover;
-  object-fit: fill;
-  width: 100%;
-  z-index: -10 !important;
-}
 
 h1,h2,h3,h4,h5,h6,p,div {
   font-family: 'Vazirmatn',sans-serif !important

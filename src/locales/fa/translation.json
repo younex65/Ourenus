@@ -11,12 +11,31 @@
   "languageSwitchToPersian": "فارسی",
   "username": "عرفان جب",
   "status": {
-    "active": "فعال"
+    "active": "فعال",
+    "expired": "منقضی شده",
+    "on_hold": "انتظار",
+    "disabled": "غیرفعال",
+    "limited": "محدود شده"
   },
   "support": "پشتیبانی",
   "userPanelTitle": "پنل کاربری عرفان",
   "userPanelWelcome": "به پنل کاربری عرفان خوش آمدید.",
   "operatingSystems": "سیستم عامل ها",
-  "configuration": "پیکربندی",
-  "download": "دانلود"
+  "configuration": "افرودن به برنامه",
+  "download": "دانلود",
+  "configsList": "لیست کانفیگ ها",
+  "emergancyList": "کانفیگ های اضطراری",
+  "linkCopied": "لینک کپی شد",
+  "expired": "تمام شده",
+  "hours": "ساعت",
+  "minutes": "دقیقه",
+  "years": "سال",
+  "B": "بایت",
+  "KB": "کیلوبایت",
+  "MB": "مگابایت",
+  "GB": "گیگابایت",
+  "TB": "ترابایت",
+  "negative": "منفی",
+  "infinity": "نامحدود",
+  "copyAll": "کپی همه"
 }
