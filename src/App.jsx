@@ -169,7 +169,7 @@ function App() {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          style={{ marginTop: "1rem", width: "80%", borderRadius: "16px" }}
+          style={{ marginTop: "1rem", borderRadius: "16px" }}
         />
       </Grid>
     </ThemeProvider>

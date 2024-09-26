@@ -15,6 +15,7 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
+import errorLogo from "../assets/vite.svg";
 
 const getButtonStyles = (type, theme) => {
   switch (type) {
@@ -79,12 +80,12 @@ const renderAppAccordion = (app, index, lang, theme, t) => {
             alignItems="center"
           >
             <img
-              src={app.logo || "/vite.svg"}
+              src={app.logo || errorLogo}
               alt={`${app.name} logo`}
               style={{ width: "30px", height: "auto" }}
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/vite.svg";
+                e.target.src = errorLogo;
               }}
             />
           </Grid>
@@ -232,12 +233,12 @@ const Apps = () => {
                 <Grid container alignItems="center">
                   <Grid item xs={1} display="flex" justifyContent="center">
                     <img
-                      src={os.osLogo || "/vite.svg"}
+                      src={os.osLogo || errorLogo}
                       alt={`${os.name} logo`}
                       style={{ width: "30px", height: "auto" }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/vite.svg";
+                        e.target.src = errorLogo;
                       }}
                     />
                   </Grid>

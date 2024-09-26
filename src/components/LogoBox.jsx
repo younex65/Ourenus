@@ -1,6 +1,7 @@
 import { Grid, useTheme } from "@mui/material";
 import BoxS from "./Box";
 import { useTranslation } from "react-i18next";
+import logo from "../assets/vite.svg";
 
 const LogoBox = () => {
   const theme = useTheme();
@@ -16,7 +17,7 @@ const LogoBox = () => {
         sx={{ padding: ".3rem", paddingX: ".5rem" }}
       >
         <img
-          src="/vite.svg"
+          src={logo}
           alt="Logo"
           style={{ width: "100%", height: "auto" }}
         />

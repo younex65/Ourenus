@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import bg from "../assets/web-1920.png";
 
 const colors = {
   gradients: {
@@ -63,7 +64,7 @@ const getTheme = (isDarkMode) =>
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            backgroundImage: isDarkMode ? "" : `url("/web-1920.png")`,
+            backgroundImage: isDarkMode ? "" : `url(${bg})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center center",
