@@ -71,6 +71,8 @@ export const formatDate = (dateString) => {
 };
 
 export const formatExpireDate = (expire) => {
+  if (!expire) return "نامشخص";
+
   let date;
   if (typeof expire === "number") {
     date = new Date(expire * 1000);
@@ -90,10 +92,12 @@ export const formatExpireDate = (expire) => {
     minute: "2-digit",
   });
 
-  return `${formattedDate} - ${formattedTime}`;
+  return `${formattedDate} - ${formattedTime}`; 
 };
 
 export const calculateRemainingTime = (expire) => {
+  if (!expire) return "نامشخص";
+
   let expireTimestamp;
   if (typeof expire === "number") {
     expireTimestamp = expire;
@@ -116,6 +120,8 @@ export const calculateRemainingTime = (expire) => {
 };
 
 export const calculateUsedTimePercentage = (expireTimestamp) => {
+  if (!expireTimestamp) return 0;
+
   const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
 
   if (remainingSeconds <= 0) return 100;
@@ -136,6 +142,7 @@ export const calculateUsedTimePercentage = (expireTimestamp) => {
 
   return 0;
 };
+
 
 export const formatTraffic = (bytes, t) => {
   if (bytes === null) {
