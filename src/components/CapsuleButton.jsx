@@ -2,7 +2,7 @@ import { Button, useTheme } from "@mui/material";
 import PropTypes from "prop-types";
 
 const CapsuleButton = ({ isActive, onClick, icon }) => {
-  const theme = useTheme(); 
+  const theme = useTheme();
 
   return (
     <Button
@@ -13,12 +13,8 @@ const CapsuleButton = ({ isActive, onClick, icon }) => {
         paddingX: "1.5rem",
         backgroundColor: "transparent",
         color: isActive
-          ? theme.palette.mode === "dark"
-            ? "rgb(200, 200, 255)"
-            : "rgb(82, 88, 125)"
-          : theme.palette.mode === "dark"
-          ? "rgba(255, 255, 255, 0.45)"
-          : "rgba(121, 124, 146, 0.45)",
+          ? theme.colors.capsuleBtn.active[theme.palette.mode]
+          : theme.colors.capsuleBtn.notActive[theme.palette.mode],
         textTransform: "capitalize",
       }}
     >

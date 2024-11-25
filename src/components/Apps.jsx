@@ -9,13 +9,13 @@ import {
   useTheme,
 } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import DevicesOtherIcon from "@mui/icons-material/DevicesOther";
 import { useTranslation } from "react-i18next";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import errorLogo from "../assets/vite.svg";
+import { Checklist } from "@mui/icons-material";
 
 const getButtonStyles = (type, theme) => {
   switch (type) {
@@ -51,11 +51,11 @@ const getButtonStyles = (type, theme) => {
 const getAccordionStyles = (theme) => ({
   marginBottom: ".8rem",
   background:
-    theme === "light" ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)",
-  color: theme === "light" ? "#000" : "#fff",
+    theme === "light" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+  color: theme.colors.BWColorRevert[theme.palette.mode],
   "&.Mui-expanded": {
     background:
-      theme === "light" ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.5)",
+      theme === "light" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.3)",
   },
 });
 
@@ -65,7 +65,7 @@ const renderAppAccordion = (app, index, lang, theme, t) => {
       <AccordionSummary
         expandIcon={
           <ArrowDropDownIcon
-            sx={{ color: theme === "light" ? "#000" : "#fff" }}
+            sx={{ color: theme.colors.BWColorRevert[theme.palette.mode] }}
           />
         }
         aria-controls={`panel-${app.name}-content`}
@@ -104,16 +104,12 @@ const renderAppAccordion = (app, index, lang, theme, t) => {
                 borderRadius: "50px",
                 backgroundColor:
                   app?.price === "0"
-                    ? theme === "dark"
-                      ? "rgb(26, 41, 39)"
-                      : "rgb(226, 241, 239)"
-                    : "rgb(255 25 25 / 65%)",
+                    ? theme.colors.apps.priceBtn.free.btn[theme.palette.mode]
+                    : theme.colors.apps.priceBtn.paid.btn[theme.palette.mode],
                 color:
                   app?.price === "0"
-                    ? theme === "dark"
-                      ? "#88c0a6"
-                      : "rgb(108 185 173)"
-                    : "#fff",
+                    ? theme.colors.apps.priceBtn.free.text[theme.palette.mode]
+                    : theme.colors.apps.priceBtn.paid.text[theme.palette.mode],
                 textTransform: "capitalize",
                 boxShadow: "0 0 3px 0px #99bbaf",
               }}
@@ -177,7 +173,7 @@ const Apps = () => {
   const { t, i18n } = useTranslation();
   const [operatingSystems, setOperatingSystems] = useState([]);
   const lang = i18n.language;
-  const theme = useTheme().palette.mode;
+  const theme = useTheme();
 
   useEffect(() => {
     fetch(import.meta.env.VITE_JSON_APPS_URL)
@@ -190,13 +186,11 @@ const Apps = () => {
       <Accordion
         sx={{
           direction: lang === "fa" ? "rtl" : "ltr",
-          background:
-            theme === "light"
-              ? "rgba(85, 95, 163, 0.65)"
-              : "rgba(34, 40, 85, 0.85)",
+          background: theme.colors.apps[theme.palette.mode],
           borderRadius: "16px",
           paddingY: ".4rem",
           color: "#fff",
+          border: theme === "light" ? "" : "none",
         }}
       >
         <AccordionSummary
@@ -208,9 +202,15 @@ const Apps = () => {
         >
           <Grid container alignItems="center" justifyContent={"space-around"}>
             <Grid item xs={1} display="flex" justifyContent="center">
-              <DevicesOtherIcon
+              <Checklist
                 fontSize="large"
-                sx={{ marginInlineStart: "1rem" }}
+                sx={{
+                  marginInlineStart: "1rem",
+                  background: "#fff",
+                  padding: 0.4,
+                  borderRadius: "10px",
+                  color: theme.colors.apps.light,
+                }}
               />
             </Grid>
             <Grid item xs={10} display="flex" justifyContent="center">
@@ -224,7 +224,9 @@ const Apps = () => {
               <AccordionSummary
                 expandIcon={
                   <ArrowDropDownIcon
-                    sx={{ color: theme === "light" ? "#000" : "#fff" }}
+                    sx={{
+                      color: theme.colors.BWColorRevert[theme.palette.mode],
+                    }}
                   />
                 }
                 aria-controls={`panel-${os.name}-content`}

@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Typography,
+  useTheme,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -20,7 +21,15 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { useTranslation } from "react-i18next";
 import QrModal from "./QrModal";
 
-const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
+const Configs = ({
+  title,
+  icon,
+  style,
+  configs,
+  iconColor,
+  btnStyle,
+  liStyle,
+}) => {
   const filteredLinks = useMemo(() => {
     if (configs && configs[configs.length - 1] === "False") {
       return configs.slice(0, -1);
@@ -29,6 +38,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
   }, [configs]);
 
   const { t } = useTranslation();
+  const theme = useTheme();
 
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(null);
@@ -73,7 +83,11 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
               {filteredLinks?.map((config, index) => {
                 const title = extractNameFromConfigURL(config);
                 return (
-                  <ListItem key={index} onClick={() => handleOpen()}>
+                  <ListItem
+                    key={index}
+                    onClick={() => handleOpen()}
+                    sx={liStyle}
+                  >
                     <Grid
                       item
                       container
@@ -118,7 +132,7 @@ const Configs = ({ title, icon, style, configs, iconColor, btnStyle }) => {
               }
               sx={{
                 width: "100%",
-                background: "rgba(255, 255, 255, 0.3)",
+                background: theme.colors.glassColor,
                 color: "#000",
                 borderRadius: "16px",
                 border: "1px solid #48444a4f",
@@ -151,6 +165,7 @@ Configs.propTypes = {
   style: PropTypes.object,
   configs: PropTypes.arrayOf(PropTypes.string).isRequired,
   iconColor: PropTypes.string,
+  liStyle: PropTypes.object,
 };
 
 export default Configs;

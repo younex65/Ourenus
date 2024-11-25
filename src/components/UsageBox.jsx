@@ -8,6 +8,13 @@ const UsageBox = ({ type, value, total, remaining }) => {
   const theme = useTheme();
   const { t } = useTranslation();
 
+  const parseValue = (input) => {
+    const numericMatch = input.match(/\d+/);
+    const number = numericMatch ? numericMatch[0] : "0";
+    const text = input.replace(/\d+/g, "").trim();
+    return { number, text };
+  };
+
   const getTypographyGradient = (v) => {
     if (v === Infinity) {
       return `linear-gradient(0deg, ${theme.palette.success.main}, ${theme.palette.success.dark})`;
@@ -24,25 +31,19 @@ const UsageBox = ({ type, value, total, remaining }) => {
     usage: {
       title: t("remaining_volume"),
       totaltitle: t("initial_volume"),
-      remaining: remaining,
-      total: total,
       unit: t("gigabytes"),
     },
     time: {
       title: t("remaining_time"),
       totaltitle: t("initial_time"),
-      remaining: remaining,
-      total: total,
       unit: t("days"),
     },
   };
 
-  const {
-    title,
-    remaining: remainingLabel,
-    total: totalLabel,
-    totaltitle: totaltitle,
-  } = labels[type];
+  const { title, totaltitle } = labels[type];
+
+  const remainingParsed = parseValue(remaining);
+  const totalParsed = parseValue(total || "");
 
   return (
     <BoxS>
@@ -58,7 +59,15 @@ const UsageBox = ({ type, value, total, remaining }) => {
         textAlign={"center"}
         sx={{ gap: ".3rem" }}
       >
-        <Typography variant="p" component="div" fontSize={"small"}>
+        <Typography
+          variant="p"
+          component="div"
+          fontSize={"small"}
+          sx={{
+            fontWeight: "300",
+            opacity: 0.6,
+          }}
+        >
           {title}
         </Typography>
         <Typography
@@ -70,11 +79,23 @@ const UsageBox = ({ type, value, total, remaining }) => {
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             textAlign: "center",
-            fontWeight: "600",
+            fontWeight: "700",
+          }}
+        >
+          {remainingParsed.number}
+        </Typography>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            textAlign: "center",
+            fontWeight: "300",
+            fontSize: "medium",
+            opacity: 0.6,
           }}
           fontWeight={"lighter"}
         >
-          {remainingLabel}
+          {remainingParsed.text}
         </Typography>
       </Grid>
       {type === "usage" && (
@@ -86,11 +107,30 @@ const UsageBox = ({ type, value, total, remaining }) => {
           textAlign={"center"}
           sx={{ gap: ".3rem" }}
         >
-          <Typography variant="p" component="div" fontSize={"small"}>
+          <Typography
+            variant="p"
+            component="div"
+            fontSize={"small"}
+            sx={{
+              fontWeight: "300",
+              opacity: 0.6,
+            }}
+          >
             {totaltitle}
           </Typography>
           <Typography variant="h6" component="div">
-            {totalLabel}
+            {totalParsed.number}
+          </Typography>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              fontWeight: "300",
+              fontSize: "medium",
+              opacity: 0.6,
+            }}
+          >
+            {totalParsed.text}
           </Typography>
         </Grid>
       )}

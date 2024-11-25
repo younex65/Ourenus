@@ -16,11 +16,7 @@ const LogoBox = () => {
         justifyContent="center"
         sx={{ padding: ".3rem", paddingX: ".5rem" }}
       >
-        <img
-          src={logo}
-          alt="Logo"
-          style={{ width: "100%", height: "auto" }}
-        />
+        <img src={logo} alt="Logo" style={{ width: "100%", height: "auto" }} />
       </Grid>
       <Grid
         item
@@ -30,14 +26,14 @@ const LogoBox = () => {
         justifyContent="center"
         alignItems={"center"}
         sx={{
-          color: theme.palette.mode === "dark" ? "#fff" : "#000",
+          color: theme.colors.BWColor[theme.palette.mode],
           fontSize: "1.2rem",
         }}
       >
         <Grid
           item
           sx={{
-            color: theme.palette.mode === "dark" ? "#fff" : "#000",
+            color: theme.colors.BWColor[theme.palette.mode],
             fontSize: "1.2rem",
             paddingBottom: ".7rem",
           }}
@@ -46,7 +42,7 @@ const LogoBox = () => {
         </Grid>
         <Grid
           sx={{
-            color: theme.palette.mode === "dark" ? "#ccc" : "#545454",
+            color: theme.colors.grayColor[theme.palette.mode],
             fontSize: ".9rem",
           }}
         >

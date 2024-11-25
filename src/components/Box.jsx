@@ -16,15 +16,11 @@ const BoxS = ({ children }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          background:
-            theme.palette.mode === "dark"
-              ? "linear-gradient(to right, rgba(34, 34, 34, 0.8), rgba(255, 255, 255, 0.1))"
-              : "linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.1))",
-          backdropFilter: "blur(8px)",
-          boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
+          background: theme.colors.box[theme.palette.mode],
+          boxShadow: "0 0 3rem 10px rgba(0, 0, 0, 0.1)",
           direction: language === "fa" ? "rtl" : "ltr",
           width: "100%",
-          border: "1px solid #ffffff6b",
+          border: theme.colors.box.border[theme.palette.mode],
         }}
       >
         {children}

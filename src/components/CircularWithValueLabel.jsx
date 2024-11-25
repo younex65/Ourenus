@@ -24,44 +24,29 @@ function CircularProgressWithLabel({ value }) {
   const getStyles = (value) => {
     if (value === Infinity) {
       return {
-        gradientColors: theme.colors.gradients.high.colors,
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? "rgba(144, 238, 144, 0.2)"
-            : theme.colors.gradients.high.background,
-        typographyGradient:
-          "linear-gradient(0deg, rgba(144, 238, 144, 1), rgba(0, 100, 0, 1))",
+        gradientColors: theme.colors.gradients.high.colors[theme.palette.mode],
+        backgroundColor: theme.colors.gradients.high.background,
+        typographyGradient: theme.colors.gradients.high.typographyGradient,
       };
     }
     if (value <= 30 || value > 100) {
       return {
-        gradientColors: theme.colors.gradients.high.colors,
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? "rgba(144, 238, 144, 0.2)"
-            : theme.colors.gradients.high.background,
-        typographyGradient:
-          "linear-gradient(0deg, rgba(144, 238, 144, 1), rgba(0, 100, 0, 1))",
+        gradientColors: theme.colors.gradients.high.colors[theme.palette.mode],
+        backgroundColor: theme.colors.gradients.high.background,
+        typographyGradient: theme.colors.gradients.high.typographyGradient,
       };
     } else if (value <= 70) {
       return {
-        gradientColors: theme.colors.gradients.medium.colors,
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? "rgba(255, 255, 102, 0.2)"
-            : theme.colors.gradients.medium.background,
-        typographyGradient:
-          "linear-gradient(0deg, rgba(235, 249, 94, 1), rgba(255, 165, 0, 1))",
+        gradientColors:
+          theme.colors.gradients.medium.colors[theme.palette.mode],
+        backgroundColor: theme.colors.gradients.medium.background,
+        typographyGradient: theme.colors.gradients.medium.typographyGradient,
       };
     } else {
       return {
-        gradientColors: theme.colors.gradients.low.colors,
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? "rgba(255, 102, 102, 0.2)"
-            : theme.colors.gradients.low.background,
-        typographyGradient:
-          "linear-gradient(0deg, rgba(255, 102, 102, 1), rgba(153, 0, 0, 1))",
+        gradientColors: theme.colors.gradients.low.colors[theme.palette.mode],
+        backgroundColor: theme.colors.gradients.low.background,
+        typographyGradient: theme.colors.gradients.low.typographyGradient,
       };
     }
   };
@@ -80,6 +65,7 @@ function CircularProgressWithLabel({ value }) {
         size={85}
         sx={{
           color: "transparent",
+          zIndex: 1,
           "& .MuiCircularProgress-circle": {
             strokeLinecap: "round",
             stroke: `url(#${gradientId})`,
@@ -92,7 +78,7 @@ function CircularProgressWithLabel({ value }) {
         value={100}
         sx={{
           position: "absolute",
-          zIndex: -1,
+          zIndex: 0,
           color: backgroundColor,
         }}
       />

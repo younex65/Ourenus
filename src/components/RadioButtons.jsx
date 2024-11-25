@@ -1,18 +1,22 @@
-import { Grid } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import CapsuleButton from "./CapsuleButton";
-import { IR, US } from "country-flag-icons/react/1x1";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
+import { useTranslation } from "react-i18next";
 
 const RadioButtons = ({ setIsDarkMode }) => {
-  const [language, setLanguage] = useState("فارسی");
-  const [theme, setTheme] = useState("روشن");
+  const [theme, setTheme] = useState("light");
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+  const themecolors = useTheme();
 
   const handleThemeChange = (newTheme) => {
     setTheme(newTheme);
-    setIsDarkMode(newTheme === "تیره");
+    setIsDarkMode(newTheme === "dark");
+  };
+
+  const handleLangChange = (lang) => {
+    i18n.changeLanguage(lang);
   };
 
   return (
@@ -20,22 +24,23 @@ const RadioButtons = ({ setIsDarkMode }) => {
       item
       container
       justifyContent="space-between"
-      sx={{ paddingY: "1rem" }}
+      sx={{ paddingY: 2 }}
       xs={11}
     >
       <Grid
         item
-        xs={4}
+        xs={5}
         sm={4}
         md={3}
         sx={{
           position: "relative",
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
+          backgroundColor: themecolors.colors.capsuleBtn.background[theme],
           borderRadius: "50px",
           display: "flex",
+          padding: 0.2,
           justifyContent: "space-between",
           backdropFilter: "blur(16px)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+          boxShadow: "0 0 7rem rgba(0, 0, 0, 0.2)",
           border: "1px solid rgba(255, 255, 255, 0.2)",
         }}
       >
@@ -43,41 +48,41 @@ const RadioButtons = ({ setIsDarkMode }) => {
           style={{
             position: "absolute",
             top: 0,
-            left: language === "فارسی" ? 0 : "50%",
+            left: lang === "fa" ? 0 : "50%",
             width: "50%",
             height: "100%",
-            backgroundColor: "rgb(143 141 179 / 60%)",
+            backgroundColor: themecolors.colors.capsuleBtn.slider,
             borderRadius: "50px",
             transition: "all 0.3s ease",
           }}
         />
         <CapsuleButton
           label="فارسی"
-          isActive={language === "فارسی"}
-          onClick={() => setLanguage("فارسی")}
-          icon={<IR style={{ borderRadius: "50px" }} />}
+          isActive={lang === "fa"}
+          onClick={() => handleLangChange("fa")}
+          icon={"فارسی"}
         />
         <CapsuleButton
           label="EN"
-          isActive={language === "English"}
-          onClick={() => setLanguage("English")}
-          icon={<US style={{ borderRadius: "50px" }} />}
+          isActive={lang === "en"}
+          onClick={() => handleLangChange("en")}
+          icon={"English"}
         />
       </Grid>
       <Grid
         item
-        xs={4}
+        xs={5}
         sm={4}
         md={3}
         sx={{
           position: "relative",
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
+          backgroundColor: themecolors.colors.capsuleBtn.background[theme],
           borderRadius: "50px",
-          padding: ".2rem",
           display: "flex",
+          padding: 0.2,
           justifyContent: "space-between",
           backdropFilter: "blur(16px)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+          boxShadow: "0 0 7rem rgba(0, 0, 0, 0.2)",
           border: "1px solid #ffffff6b",
         }}
       >
@@ -85,23 +90,23 @@ const RadioButtons = ({ setIsDarkMode }) => {
           style={{
             position: "absolute",
             top: 0,
-            left: theme === "روشن" ? 0 : "50%",
+            left: theme === "light" ? 0 : "50%",
             width: "50%",
             height: "100%",
-            backgroundColor: "rgb(143 141 179 / 60%)",
+            backgroundColor: themecolors.colors.capsuleBtn.slider,
             borderRadius: "50px",
             transition: "all 0.3s ease",
           }}
         />
         <CapsuleButton
-          isActive={theme === "روشن"}
-          onClick={() => handleThemeChange("روشن")}
-          icon={<WbSunnyOutlinedIcon />}
+          isActive={theme === "light"}
+          onClick={() => handleThemeChange("light")}
+          icon={"روشن"}
         />
         <CapsuleButton
-          isActive={theme === "تیره"}
-          onClick={() => handleThemeChange("تیره")}
-          icon={<DarkModeOutlinedIcon />}
+          isActive={theme === "dark"}
+          onClick={() => handleThemeChange("dark")}
+          icon={"تیره"}
         />
       </Grid>
     </Grid>
