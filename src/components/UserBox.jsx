@@ -1,13 +1,29 @@
+/* eslint-disable react/prop-types */
 import { Button, Grid, useTheme } from "@mui/material";
 import BoxS from "./Box";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlined";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
 const UserBox = ({ data }) => {
   const theme = useTheme();
   const { t } = useTranslation();
+
+  const [statusData, setStatusData] = useState("");
+
+  useEffect(() => {
+    if (data?.status) {
+      setStatusData(data?.status);
+    } else if (data?.expired || data?.data_limit_reached || data?.limited) {
+      setStatusData("expired");
+    } else if (data?.inactive) {
+      setStatusData("disabled");
+    } else if (data?.active) {
+      setStatusData("active");
+    } else return setStatusData("");
+  }, [data]);
 
   const getStatusBackgroundColor = (status) => {
     switch (status) {
@@ -86,8 +102,8 @@ const UserBox = ({ data }) => {
             <Button
               sx={{
                 borderRadius: "50px",
-                backgroundColor: getStatusBackgroundColor(data?.status),
-                color: getStatusTextColor(data?.status),
+                backgroundColor: getStatusBackgroundColor(statusData),
+                color: getStatusTextColor(statusData),
                 textTransform: "capitalize",
                 boxShadow: "0 0 3px 0px #99bbaf",
                 width: "90%",
@@ -96,7 +112,7 @@ const UserBox = ({ data }) => {
                 fontSize: "small",
               }}
             >
-              {t(`status.${data?.status}`)}
+              {t(`status.${statusData}`)}
             </Button>
           </Grid>
           <Grid item xs={7} textAlign={"center"}>

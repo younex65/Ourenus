@@ -31,6 +31,8 @@ function App() {
     i18n.changeLanguage(newLanguage);
   };
 
+  const [dataLinks, setDataLinks] = useState([]);
+
   useEffect(() => {
     GetInfoRequest.getInfo()
       .then((res) => {
@@ -38,6 +40,26 @@ function App() {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (data?.links) {
+      const links =
+        data.links[data.links.length - 1] === "False"
+          ? data.links.slice(0, -1)
+          : data.links;
+      setDataLinks(links);
+    } else {
+      GetInfoRequest.getConfigs().then((res) => {
+        const decodedLinks = decodeBase64(res.data.trim());
+        const configArray = decodedLinks ? decodedLinks.split("\n") : [];
+        setDataLinks(
+          configArray[configArray.length - 1] === "False"
+            ? configArray.slice(0, -1)
+            : configArray
+        );
+      });
+    }
+  }, [data?.links]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -87,8 +109,13 @@ function App() {
               />
               <UsageBox
                 type="time"
-                value={calculateUsedTimePercentage(data?.expire)}
-                remaining={calculateRemainingTime(data?.expire, t)}
+                value={calculateUsedTimePercentage(
+                  data?.expire || data?.expire_date
+                )}
+                remaining={calculateRemainingTime(
+                  data?.expire || data?.expire_date,
+                  t
+                )}
               />
               <Apps />
               <Configs
@@ -119,7 +146,7 @@ function App() {
                     }}
                   />
                 }
-                configs={data?.links}
+                configs={dataLinks}
                 btnStyle={{
                   cursor: "pointer",
                   borderRadius: "30%",
@@ -155,3 +182,13 @@ function App() {
 }
 
 export default App;
+
+function decodeBase64(encodedString) {
+  try {
+    const decodedString = atob(encodedString);
+    return decodedString;
+  } catch (error) {
+    console.error("Failed to decode base64:", error);
+    return "";
+  }
+}

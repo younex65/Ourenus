@@ -24,7 +24,7 @@ const getButtonStyles = (type, theme) => {
         backgroundColor:
           theme === "dark"
             ? "rgba(30, 144, 255, 0.5)"
-            : "rgba(35, 103, 181, 0.8)", // Bright Blue
+            : "rgba(35, 103, 181, 0.8)",
         color: "#fff",
       };
     case "config":
@@ -32,7 +32,7 @@ const getButtonStyles = (type, theme) => {
         backgroundColor:
           theme === "dark"
             ? "rgba(76, 175, 80, 0.5)"
-            : "rgba(78, 191, 119, 0.8)", // Strong Green
+            : "rgba(78, 191, 119, 0.8)",
         color: "#fff",
       };
     case "video":
@@ -40,7 +40,7 @@ const getButtonStyles = (type, theme) => {
         backgroundColor:
           theme === "dark"
             ? "rgba(255, 193, 7, 0.5)"
-            : "rgba(255, 208, 75, 0.8)", // Bright Yellow
+            : "rgba(255, 208, 75, 0.8)",
         color: "#000",
       };
     default:

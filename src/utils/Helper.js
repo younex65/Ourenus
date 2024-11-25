@@ -56,32 +56,63 @@ export const formatDate = (dateString) => {
   const tehranOffset = 3.5 * 60 * 1000;
   const tehranTime = new Date(date.getTime() + tehranOffset);
 
-  return tehranTime.toLocaleString("en-US", {
-    timeZone: "Asia/Tehran",
+  const formattedDate = tehranTime.toLocaleDateString("fa-IR", {
+    year: "numeric",
     month: "long",
     day: "numeric",
+  });
+
+  const formattedTime = tehranTime.toLocaleTimeString("fa-IR", {
     hour: "2-digit",
     minute: "2-digit",
   });
+
+  return `${formattedDate} - ${formattedTime}`;
 };
 
-export const formatExpireDate = (timestamp) =>
-  formatDate(new Date(timestamp * 1000).toISOString());
+export const formatExpireDate = (expire) => {
+  let date;
+  if (typeof expire === "number") {
+    date = new Date(expire * 1000);
+  } else if (typeof expire === "string") {
+    date = new Date(expire);
+  } else {
+    throw new Error("Invalid expire format");
+  }
 
-export const calculateRemainingTime = (expireTimestamp, t) => {
+  const formattedDate = date.toLocaleDateString("fa-IR", {
+    month: "long",
+    day: "numeric",
+  });
+
+  const formattedTime = date.toLocaleTimeString("fa-IR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return `${formattedDate} - ${formattedTime}`;
+};
+
+export const calculateRemainingTime = (expire) => {
+  let expireTimestamp;
+  if (typeof expire === "number") {
+    expireTimestamp = expire;
+  } else if (typeof expire === "string") {
+    expireTimestamp = Math.floor(new Date(expire).getTime() / 1000);
+  } else {
+    throw new Error("Invalid expire format");
+  }
+
   const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
+  if (remainingSeconds <= 0) return "تمام شده";
 
-  if (remainingSeconds <= 0) return t("expired");
-
-  const minutes = Math.floor(remainingSeconds / 60);
-  const hours = Math.floor(remainingSeconds / (60 * 60));
   const days = Math.floor(remainingSeconds / (60 * 60 * 24));
-  const years = Math.floor(days / 365);
+  const hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
+  const minutes = Math.floor((remainingSeconds % (60 * 60)) / 60);
 
-  if (years > 0) return `${years} ${t("years")}`;
-  if (days > 0) return `${days} ${t("days")}`;
-  if (hours > 0) return `${hours} ${t("hours")}`;
-  return `${minutes} ${t("minutes")}`;
+  if (days > 0) return `${days} روز, ${hours} ساعت`;
+  if (hours > 0) return `${hours} ساعت, ${minutes} دقیقه`;
+  return `${minutes} دقیقه`;
 };
 
 export const calculateUsedTimePercentage = (expireTimestamp) => {
