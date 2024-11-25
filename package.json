@@ -1,5 +1,5 @@
 {
-  "name": "erfsub",
+  "name": "ouranus",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -15,10 +15,10 @@
     "@mui/icons-material": "^6.1.1",
     "@mui/material": "^6.1.1",
     "axios": "^1.7.7",
-    "country-flag-icons": "^1.5.13",
     "i18next": "^23.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^15.0.2",
     "react-qr-code": "^2.0.15",
     "react-spinners": "^0.14.1",

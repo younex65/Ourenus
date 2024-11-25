@@ -17,6 +17,7 @@ import {
 } from "./utils/Helper";
 import { ToastContainer } from "react-toastify";
 import RadioButtons from "./components/RadioButtons";
+import { Helmet } from "react-helmet";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -64,6 +65,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Helmet>
+        <title>
+          {data?.username ? `${data.username} Sub Info` : "Ouranus Sub Info"}
+        </title>
+        <meta
+          name="description"
+          content="Powered by https://github.com/MatinDehghanian"
+        />
+      </Helmet>
       <Grid
         container
         justifyContent={"center"}
