@@ -1,7 +1,7 @@
 # قالب اخنصاصی مرزبان و مرزنشین اورانوس | Ouranus
 
 ## Desktop View
-![image](https://github.com/user-attachments/assets/b85a9158-8a77-44ba-92c3-297a13ac2c72)
+![image](https://github.com/user-attachments/assets/c4c41db3-d83f-4f82-b050-550741a176ac)
 
 
 ## Responsive Mobile View
@@ -106,7 +106,7 @@
 # Ouranus
 
 ## Desktop View
-![image](https://github.com/user-attachments/assets/b85a9158-8a77-44ba-92c3-297a13ac2c72)
+![image](https://github.com/user-attachments/assets/c4c41db3-d83f-4f82-b050-550741a176ac)
 
 
 ## Responsive Mobile View
