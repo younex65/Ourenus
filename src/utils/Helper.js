@@ -114,8 +114,8 @@ export const calculateRemainingTime = (expire) => {
   const hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
   const minutes = Math.floor((remainingSeconds % (60 * 60)) / 60);
 
-  if (days > 0) return `${days} روز, ${hours} ساعت`;
-  if (hours > 0) return `${hours} ساعت, ${minutes} دقیقه`;
+  if (days > 0) return `${days} روز `;
+  if (hours > 0) return `${hours} ساعت`;
   return `${minutes} دقیقه`;
 };
 
@@ -143,14 +143,13 @@ export const calculateUsedTimePercentage = (expireTimestamp) => {
   return 0;
 };
 
-
 export const formatTraffic = (bytes, t) => {
   if (bytes === null) {
     return t("infinity");
   }
 
   if (bytes < 0) {
-    return t("negative");
+    return t("gigabytes");
   }
 
   const units = [t("B"), t("KB"), t("MB"), t("GB"), t("TB")];

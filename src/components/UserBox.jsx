@@ -30,6 +30,7 @@ const UserBox = ({ data }) => {
       case "active":
         return theme.colors.userBox.statusBtn.btn.active[theme.palette.mode];
       case "expired":
+      case "limited":
         return theme.colors.userBox.statusBtn.btn.expired[theme.palette.mode];
       case "on_hold":
         return theme.colors.userBox.statusBtn.btn.onHold[theme.palette.mode];
@@ -45,6 +46,7 @@ const UserBox = ({ data }) => {
       case "active":
         return theme.colors.userBox.statusBtn.text.active[theme.palette.mode];
       case "expired":
+      case "limited":
         return theme.colors.userBox.statusBtn.text.expired[theme.palette.mode];
       case "on_hold":
         return theme.colors.userBox.statusBtn.text.onHold[theme.palette.mode];
