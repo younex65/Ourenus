@@ -1,4 +1,4 @@
-# قالب اخنصاصی مرزبان و مرزنشین اورانوس | Ouranus
+# قالب اخنصاصی مرزبان و مرزنشین اورانوس | Ourenus
 
 ## Desktop View
 ![image](https://github.com/user-attachments/assets/c4c41db3-d83f-4f82-b050-550741a176ac)
@@ -33,7 +33,7 @@
 
 ۱. **قالب رو با دستور زیر دانلود کنید**
    ```sh
-   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/MatinDehghanian/Ouranus/releases/latest/download/index.html
+   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/MatinDehghanian/Ourenus/releases/latest/download/index.html
    ```
 
 ۲. **دستورات زیر رو تو ترمینال سرورتون بزنید**
@@ -56,7 +56,7 @@
 
 ۱. **قالب رو با دستور زیر دانلود کنید**
    ```sh
-   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://github.com/MatinDehghanian/Ouranus/releases/latest/download/index.html
+   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://github.com/MatinDehghanian/Ourenus/releases/latest/download/index.html
    ```
 
 ۲. **دستورات زیر رو تو ترمینال سرورتون بزنید**
@@ -103,7 +103,7 @@
 
 ---
 
-# Ouranus
+# Ourenus
 
 ## Desktop View
 ![image](https://github.com/user-attachments/assets/c4c41db3-d83f-4f82-b050-550741a176ac)
@@ -137,7 +137,7 @@
 
 1. **Download the Template File:**
    ```sh
-   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/MatinDehghanian/Ouranus/releases/latest/download/index.html
+   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://github.com/MatinDehghanian/Ourenus/releases/latest/download/index.html
    ```
 
 2. **Execute the Following Commands in Your Server Terminal:**
@@ -160,7 +160,7 @@
 
 1. **Download the Template File:**
    ```sh
-   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://github.com/MatinDehghanian/Ouranus/releases/latest/download/index.html
+   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://github.com/MatinDehghanian/Ourenus/releases/latest/download/index.html
    ```
 
 2. **Execute the Following Commands in Your Server Terminal:**
