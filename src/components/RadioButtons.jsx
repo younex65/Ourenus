@@ -50,8 +50,8 @@ const RadioButtons = ({ setIsDarkMode }) => {
       <Grid
         item
         xs={5}
-        sm={4}
-        md={3}
+        sm={4.8}
+        md={4}
         sx={{
           position: "relative",
           backgroundColor: themecolors.colors.capsuleBtn.background[theme],
@@ -92,8 +92,8 @@ const RadioButtons = ({ setIsDarkMode }) => {
       <Grid
         item
         xs={5}
-        sm={4}
-        md={3}
+        sm={4.5}
+        md={4}
         sx={{
           position: "relative",
           backgroundColor: themecolors.colors.capsuleBtn.background[theme],
