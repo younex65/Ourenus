@@ -165,9 +165,9 @@ function App() {
                   cursor: "pointer",
                   borderRadius: "30%",
                   padding: ".3rem",
-                  background: "#c7becb61",
+                  background: theme.colors.glassColor,
                   "&:hover": {
-                    background: "#887890",
+                    background: theme.colors.configs.revert[theme.palette.mode],
                   },
                 }}
                 liStyle={{
