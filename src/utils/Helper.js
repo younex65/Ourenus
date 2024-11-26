@@ -118,15 +118,28 @@ export const calculateRemainingTime = (expire) => {
   if (hours > 0) return `${hours} ساعت`;
   return `${minutes} دقیقه`;
 };
-
 export const calculateUsedTimePercentage = (expireTimestamp) => {
-  if (!expireTimestamp) return 0;
+  let expireTimeInSeconds;
 
-  const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
+  if (typeof expireTimestamp === "string") {
+    expireTimeInSeconds = Math.floor(
+      new Date(expireTimestamp).getTime() / 1000
+    );
+  } else if (typeof expireTimestamp === "number") {
+    expireTimeInSeconds = expireTimestamp;
+  } else {
+    throw new Error("Invalid expireTimestamp format");
+  }
+
+  const remainingSeconds = expireTimeInSeconds - Math.floor(Date.now() / 1000);
 
   if (remainingSeconds <= 0) return 100;
 
   const daysRemaining = Math.floor(remainingSeconds / (60 * 60 * 24));
+
+  if (daysRemaining < 1) {
+    return 99;
+  }
 
   if (daysRemaining <= 30) {
     return ((30 - daysRemaining) / 30) * 100;
