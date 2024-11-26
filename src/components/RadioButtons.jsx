@@ -1,22 +1,42 @@
 import { Grid, useTheme } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import CapsuleButton from "./CapsuleButton";
 import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 
 const RadioButtons = ({ setIsDarkMode }) => {
-  const [theme, setTheme] = useState("light");
+  const [theme] = useState();
   const { i18n } = useTranslation();
   const lang = i18n.language;
   const themecolors = useTheme();
 
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
-    setIsDarkMode(newTheme === "dark");
+  const [isLightMode, setIsLightMode] = useState(
+    themecolors.palette.mode === "light"
+  );
+
+  useEffect(() => {
+    const savedTheme = Cookies.get("theme") || themecolors.palette.mode;
+    const savedLanguage = Cookies.get("language") || i18n.language;
+    setIsLightMode(savedTheme === "light");
+    setIsDarkMode(!isLightMode);
+
+    if (savedLanguage !== i18n.language) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, [setIsDarkMode, themecolors, i18n, isLightMode]);
+
+  const handleThemeChange = (theme) => {
+    const isLight = theme === "light";
+    setIsLightMode(isLight);
+    setIsDarkMode(!isLight);
+    Cookies.set("theme", isLight ? "light" : "dark", { expires: 90 });
   };
 
-  const handleLangChange = (lang) => {
-    i18n.changeLanguage(lang);
+  const handleLangChange = () => {
+    const newLanguage = i18n.language === "fa" ? "en" : "fa";
+    i18n.changeLanguage(newLanguage);
+    Cookies.set("language", newLanguage, { expires: 90 });
   };
 
   return (
@@ -90,7 +110,7 @@ const RadioButtons = ({ setIsDarkMode }) => {
           style={{
             position: "absolute",
             top: 0,
-            left: theme === "light" ? 0 : "50%",
+            left: isLightMode ? 0 : "50%",
             width: "50%",
             height: "100%",
             backgroundColor: themecolors.colors.capsuleBtn.slider,
@@ -99,12 +119,12 @@ const RadioButtons = ({ setIsDarkMode }) => {
           }}
         />
         <CapsuleButton
-          isActive={theme === "light"}
+          isActive={isLightMode}
           onClick={() => handleThemeChange("light")}
           icon={"روشن"}
         />
         <CapsuleButton
-          isActive={theme === "dark"}
+          isActive={!isLightMode}
           onClick={() => handleThemeChange("dark")}
           icon={"تیره"}
         />
