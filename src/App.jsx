@@ -51,7 +51,11 @@ function App() {
       setDataLinks(links);
     } else {
       GetInfoRequest.getConfigs().then((res) => {
-        const decodedLinks = decodeBase64(res.data.trim());
+        const links = res.data.trim();
+        const decodedLinks =
+          links.includes("vmess") || links.includes("vless")
+            ? links
+            : decodeBase64(links);
         const configArray = decodedLinks ? decodedLinks.split("\n") : [];
         setDataLinks(
           configArray[configArray.length - 1] === "False"

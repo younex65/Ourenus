@@ -16,12 +16,14 @@ const UserBox = ({ data }) => {
   useEffect(() => {
     if (data?.status) {
       setStatusData(data?.status);
-    } else if (data?.expired || data?.data_limit_reached || data?.limited) {
+    } else if (data?.expired || data?.data_limit_reached) {
       setStatusData("expired");
-    } else if (data?.inactive) {
+    } else if (!data?.enabled) {
       setStatusData("disabled");
-    } else if (data?.active) {
+    } else if (data?.is_active) {
       setStatusData("active");
+    } else if (data?.activated === null) {
+      setStatusData("on_hold");
     } else return setStatusData("");
   }, [data]);
 
