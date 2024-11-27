@@ -119,6 +119,8 @@ export const calculateRemainingTime = (expire) => {
   return `${minutes} دقیقه`;
 };
 export const calculateUsedTimePercentage = (expireTimestamp) => {
+  console.log(expireTimestamp);
+
   let expireTimeInSeconds;
 
   if (typeof expireTimestamp === "string") {
@@ -128,7 +130,7 @@ export const calculateUsedTimePercentage = (expireTimestamp) => {
   } else if (typeof expireTimestamp === "number") {
     expireTimeInSeconds = expireTimestamp;
   } else {
-    throw new Error("Invalid expireTimestamp format");
+    return 0;
   }
 
   const remainingSeconds = expireTimeInSeconds - Math.floor(Date.now() / 1000);
