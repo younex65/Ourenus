@@ -120,8 +120,6 @@ const renderButtonGrid = (
     window.location.href = shadowrocketLink; // Redirect to the Shadowrocket link
   };
 
-  console.log(shadowrocket);
-
   return (
     <Grid
       item
