@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   Accordion,
   AccordionDetails,
@@ -11,11 +12,16 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useTranslation } from "react-i18next";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined";
 import errorLogo from "../assets/vite.svg";
 import { Checklist } from "@mui/icons-material";
+import TutorialModal from "./TutorialModal";
+import AppleIcon from "@mui/icons-material/Apple";
+import AndroidIcon from "@mui/icons-material/Android";
+import DesktopWindowsOutlinedIcon from "@mui/icons-material/DesktopWindowsOutlined";
+import CodeIcon from "@mui/icons-material/Code";
+import CancelPresentationOutlinedIcon from "@mui/icons-material/CancelPresentationOutlined";
 
 const getButtonStyles = (type, theme) => {
   switch (type) {
@@ -27,7 +33,7 @@ const getButtonStyles = (type, theme) => {
             : "rgba(35, 103, 181, 0.8)",
         color: "#fff",
       };
-    case "config":
+    case "configuration":
       return {
         backgroundColor:
           theme === "dark"
@@ -35,7 +41,7 @@ const getButtonStyles = (type, theme) => {
             : "rgba(78, 191, 119, 0.8)",
         color: "#fff",
       };
-    case "video":
+    case "watchVideo":
       return {
         backgroundColor:
           theme === "dark"
@@ -46,6 +52,17 @@ const getButtonStyles = (type, theme) => {
     default:
       return {};
   }
+};
+
+const getOsIcon = (osName) => {
+  const icons = {
+    Windows: <DesktopWindowsOutlinedIcon fontSize="large" />,
+    Android: <AndroidIcon fontSize="large" />,
+    iOS: <AppleIcon fontSize="large" />,
+    Linux: <CodeIcon fontSize="large" />,
+    default: <CancelPresentationOutlinedIcon fontSize="large" />,
+  };
+  return icons[osName] || icons.default;
 };
 
 const getAccordionStyles = (theme) => ({
@@ -59,7 +76,94 @@ const getAccordionStyles = (theme) => ({
   },
 });
 
-const renderAppAccordion = (app, index, lang, theme, t) => {
+const renderButtonGrid = (
+  icon,
+  label,
+  theme,
+  t,
+  link,
+  app,
+  handleModalOpen,
+  shadowrocket
+) => {
+  if (label === "watchVideo") {
+    return (
+      <Grid
+        item
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        gap={0.5}
+        width={"100%"}
+        sx={{
+          ...getButtonStyles(label, theme),
+          borderRadius: "1rem",
+          padding: 1,
+          cursor: "pointer",
+          "&:hover": {
+            background: "rgba(255, 255, 255, 0.4)",
+          },
+        }}
+        onClick={() => handleModalOpen(app)}
+      >
+        {icon}
+        <Typography fontSize={"smaller"} textAlign={"center"} noWrap>
+          {t(label)}
+        </Typography>
+      </Grid>
+    );
+  }
+
+  const openShadowrocketURL = (subLink) => {
+    const encodedURL = btoa(subLink);
+    const shadowrocketLink = "sub://" + encodedURL;
+    window.location.href = shadowrocketLink; // Redirect to the Shadowrocket link
+  };
+
+  console.log(shadowrocket);
+
+  return (
+    <Grid
+      item
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      gap={0.5}
+      width={"100%"}
+      sx={{
+        ...getButtonStyles(label, theme),
+        borderRadius: "1rem",
+        padding: 1,
+        cursor: "pointer",
+        textDecoration: "none",
+        "&:hover": {
+          background: "rgba(255, 255, 255, 0.4)",
+        },
+      }}
+      component={shadowrocket ? "div" : "a"}
+      target={!shadowrocket ? "_blank" : ""}
+      href={!shadowrocket ? link : ""}
+      onClick={
+        shadowrocket ? () => openShadowrocketURL(shadowrocket) : undefined
+      }
+    >
+      {icon}
+      <Typography fontSize={"smaller"} textAlign={"center"} noWrap>
+        {t(label)}
+      </Typography>
+    </Grid>
+  );
+};
+
+const renderAppAccordion = (
+  app,
+  index,
+  lang,
+  theme,
+  t,
+  subLink,
+  handleModalOpen
+) => {
   return (
     <Accordion key={index} sx={getAccordionStyles(theme)}>
       <AccordionSummary
@@ -124,56 +228,63 @@ const renderAppAccordion = (app, index, lang, theme, t) => {
           <Typography sx={{ paddingBottom: "1rem" }}>
             {lang === "en" ? app.description : app.faDescription}
           </Typography>
-          {["download", "config", "video"].map((type) => (
-            <Button
-              key={type}
-              variant="contained"
-              href={
-                type === "download"
-                  ? app.downloadLink
-                  : type === "config"
-                  ? app.configLink
-                  : app.videoLink
-              }
-              sx={{
-                ...getButtonStyles(type, theme),
-                backdropFilter: "blur(8px)",
-                borderRadius: "8px !important",
-                width: "85%",
-                border: theme === "dark" ? "1px solid #ffffff42" : "",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              {type === "download" ? (
-                <ArrowCircleDownIcon fontSize="large" />
-              ) : type === "config" ? (
-                <AddCircleOutlineIcon fontSize="large" />
-              ) : (
-                <PlayCircleFilledWhiteOutlinedIcon fontSize="large" />
-              )}
-              {t(
-                type === "download"
-                  ? "download"
-                  : type === "config"
-                  ? "configuration"
-                  : "watchVideo"
-              )}
-              <KeyboardDoubleArrowLeftIcon fontSize="large" />
-            </Button>
-          ))}
+          {app.downloadLink &&
+            renderButtonGrid(
+              <ArrowCircleDownIcon fontSize="medium" />,
+              "download",
+              theme,
+              t,
+              app.downloadLink
+            )}
+          {app.configLink &&
+            renderButtonGrid(
+              <AddCircleOutlineIcon fontSize="medium" />,
+              "configuration",
+              theme,
+              t,
+              app.configLink.replace("{url}", subLink),
+              null,
+              null,
+              app.name === "Shadowrocket" ? subLink : null
+            )}
+          {app.tutorialSteps?.length > 0 &&
+            renderButtonGrid(
+              <PlayCircleFilledWhiteOutlinedIcon fontSize="medium" />,
+              "watchVideo",
+              theme,
+              t,
+              null,
+              app,
+              handleModalOpen
+            )}
         </Grid>
       </AccordionDetails>
     </Accordion>
   );
 };
 
-const Apps = () => {
+const Apps = ({ subLink }) => {
   const { t, i18n } = useTranslation();
   const [operatingSystems, setOperatingSystems] = useState([]);
   const lang = i18n.language;
   const theme = useTheme();
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const handleModalOpen = (app) => {
+    setModalData({
+      title: app.name,
+      videoLink: app.videoLink,
+      tutorialSteps: app.tutorialSteps,
+    });
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+    setModalData(null);
+  };
 
   useEffect(() => {
     fetch(import.meta.env.VITE_JSON_APPS_URL)
@@ -182,89 +293,101 @@ const Apps = () => {
   }, []);
 
   return (
-    <Grid justifyContent="space-between" sx={{ paddingY: "1rem" }} xs={11} item>
-      <Accordion
-        sx={{
-          direction: lang === "fa" ? "rtl" : "ltr",
-          background: theme.colors.apps[theme.palette.mode],
-          borderRadius: "16px",
-          paddingY: ".4rem",
-          color: "#fff",
-          border: theme === "light" ? "" : "none",
-        }}
+    <>
+      <Grid
+        justifyContent="space-between"
+        sx={{ paddingY: "1rem" }}
+        xs={11}
+        item
       >
-        <AccordionSummary
-          expandIcon={
-            <ArrowDropDownIcon fontSize="large" sx={{ color: "#fff" }} />
-          }
-          aria-controls="panel-os-content"
-          id="panel-os-header"
+        <Accordion
+          sx={{
+            direction: lang === "fa" ? "rtl" : "ltr",
+            background: theme.colors.apps[theme.palette.mode],
+            borderRadius: "16px",
+            paddingY: ".4rem",
+            color: "#fff",
+            border: theme === "light" ? "" : "none",
+          }}
         >
-          <Grid container alignItems="center" justifyContent={"space-around"}>
-            <Grid item xs={1} display="flex" justifyContent="center">
-              <Checklist
-                fontSize="large"
-                sx={{
-                  marginInlineStart: "1rem",
-                  background: "#fff",
-                  padding: 0.4,
-                  borderRadius: "10px",
-                  color: theme.colors.apps.light,
-                }}
-              />
+          <AccordionSummary
+            expandIcon={
+              <ArrowDropDownIcon fontSize="large" sx={{ color: "#fff" }} />
+            }
+            aria-controls="panel-os-content"
+            id="panel-os-header"
+          >
+            <Grid container alignItems="center" justifyContent={"space-around"}>
+              <Grid item xs={1} display="flex" justifyContent="center">
+                <Checklist
+                  fontSize="large"
+                  sx={{
+                    marginInlineStart: "1rem",
+                    background: "#fff",
+                    padding: 0.4,
+                    borderRadius: "10px",
+                    color: theme.colors.apps.light,
+                  }}
+                />
+              </Grid>
+              <Grid item xs={10} display="flex" justifyContent="center">
+                <Typography>{t("operatingSystems")}</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={10} display="flex" justifyContent="center">
-              <Typography>{t("operatingSystems")}</Typography>
-            </Grid>
-          </Grid>
-        </AccordionSummary>
-        <AccordionDetails>
-          {operatingSystems.map((os, index) => (
-            <Accordion key={index} sx={getAccordionStyles(theme)}>
-              <AccordionSummary
-                expandIcon={
-                  <ArrowDropDownIcon
-                    sx={{
-                      color: theme.colors.BWColorRevert[theme.palette.mode],
-                    }}
-                  />
-                }
-                aria-controls={`panel-${os.name}-content`}
-                id={`panel-${os.name}-header`}
-              >
-                <Grid container alignItems="center">
-                  <Grid item xs={1} display="flex" justifyContent="center">
-                    <img
-                      src={os.osLogo}
-                      alt={`${os.name} logo`}
-                      style={{
-                        width: "30px",
-                        height: "auto",
-                      }}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = errorLogo;
+          </AccordionSummary>
+          <AccordionDetails>
+            {operatingSystems.map((os, index) => (
+              <Accordion key={index} sx={getAccordionStyles(theme)}>
+                <AccordionSummary
+                  expandIcon={
+                    <ArrowDropDownIcon
+                      sx={{
+                        color: theme.colors.BWColorRevert[theme.palette.mode],
                       }}
                     />
+                  }
+                  aria-controls={`panel-${os.name}-content`}
+                  id={`panel-${os.name}-header`}
+                >
+                  <Grid container alignItems="center">
+                    <Grid item xs={1} display="flex" justifyContent="center">
+                      {getOsIcon(os.engName)}
+                    </Grid>
+                    <Grid item xs={10} display="flex" justifyContent="center">
+                      <Typography>
+                        {lang === "en" ? os.engName : os.name}
+                      </Typography>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={10} display="flex" justifyContent="center">
-                    <Typography>
-                      {lang === "en" ? os.engName : os.name}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails>
-                {os.apps.map((app, appIndex) =>
-                  renderAppAccordion(app, appIndex, lang, theme, t)
-                )}
-              </AccordionDetails>
-            </Accordion>
-          ))}
-        </AccordionDetails>
-      </Accordion>
-    </Grid>
+                </AccordionSummary>
+                <AccordionDetails>
+                  {os.apps.map((app, appIndex) =>
+                    renderAppAccordion(
+                      app,
+                      appIndex,
+                      lang,
+                      theme,
+                      t,
+                      subLink,
+                      handleModalOpen
+                    )
+                  )}
+                </AccordionDetails>
+              </Accordion>
+            ))}
+          </AccordionDetails>
+        </Accordion>
+      </Grid>
+      <TutorialModal
+        open={modalOpen}
+        handleClose={handleModalClose}
+        data={modalData}
+      />
+    </>
   );
+};
+Apps.propTypes = {
+  subLink: PropTypes.string,
 };
 
 export default Apps;

@@ -66,6 +66,10 @@ function App() {
     }
   }, [data?.links]);
 
+  const url = data?.subscription_url.includes("https://")
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -131,7 +135,7 @@ function App() {
                   t
                 )}
               />
-              <Apps />
+              <Apps subLink={url} />
               <Configs
                 title={t("configsList")}
                 style={{

@@ -119,8 +119,6 @@ export const calculateRemainingTime = (expire) => {
   return `${minutes} دقیقه`;
 };
 export const calculateUsedTimePercentage = (expireTimestamp) => {
-  console.log(expireTimestamp);
-
   let expireTimeInSeconds;
 
   if (typeof expireTimestamp === "string") {
