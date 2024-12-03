@@ -189,13 +189,15 @@ const UserBox = ({ data }) => {
           </Grid>
         </Grid>
       </BoxS>
-      <QrModal
-        open={openQrModal}
-        handleClose={handleQrModalClose}
-        title={t("subQRCode")}
-        link={qrLink}
-        id="switch"
-      />
+      {qrLink && (
+        <QrModal
+          open={openQrModal}
+          handleClose={handleQrModalClose}
+          title={t("subQRCode")}
+          link={qrLink}
+          id="switch"
+        />
+      )}
     </>
   );
 };
