@@ -75,112 +75,114 @@ function App() {
       <CssBaseline />
       <Helmet>
         <title>
-          {data?.username ? `${data.username} Sub Info` : "Ourenus Sub Info"}
+          {data?.username ? `${data.username} Sub Info` : "Technoi Sub Info"}
         </title>
         <meta
           name="description"
           content="Powered by https://github.com/MatinDehghanian"
         />
       </Helmet>
-      <Grid
-        container
-        justifyContent={"center"}
-        justifySelf={"center"}
-        item
-        xs={11.5}
-        sm={7}
-        md={6}
-        lg={5}
-        xl={3.5}
-      >
-        {loading ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100vh",
-            }}
-          >
-            <ClipLoader size={50} color="#3498db" loading={loading} />
-          </div>
-        ) : (
-          data && (
-            <>
-              <RadioButtons
-                setIsDarkMode={setIsDarkMode}
-                handleLanguageChange={handleLanguageChange}
-              />
-              <LogoBox />
-              <UserBox data={data} />
-              <UsageBox
-                type="usage"
-                value={Number(
-                  ((data?.used_traffic / data?.data_limit) * 100).toFixed(2)
-                )}
-                total={formatTraffic(data?.data_limit, t)}
-                remaining={
-                  data?.data_limit === null
-                    ? formatTraffic(null, t)
-                    : formatTraffic(data?.data_limit - data?.used_traffic, t)
-                }
-              />
-              <UsageBox
-                type="time"
-                value={calculateUsedTimePercentage(
-                  data?.expire || data?.expire_date
-                )}
-                remaining={calculateRemainingTime(
-                  data?.expire || data?.expire_date,
-                  t
-                )}
-              />
-              <Apps subLink={url} />
-              <Configs
-                title={t("configsList")}
-                style={{
-                  direction: lang === "fa" ? "rtl" : "ltr",
-                  background: theme.colors.configs[theme.palette.mode],
-                  boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
-                  width: "100%",
-                  border:
-                    theme.palette.mode === "light"
-                      ? "1px solid #ffffff6b"
-                      : "none",
-                  borderRadius: "16px",
-                  paddingY: ".4rem",
-                  color:
-                    theme.palette.mode === "dark"
-                      ? "rgba(255, 255, 255)"
-                      : "rgb(0 0 0)",
-                }}
-                iconColor={theme.colors.configs.revert[theme.palette.mode]}
-                icon={
-                  <LanguageIcon
-                    fontSize="large"
-                    sx={{
-                      marginInlineStart: "1rem",
-                      color: theme.colors.configs.revert[theme.palette.mode],
-                    }}
-                  />
-                }
-                configs={dataLinks}
-                btnStyle={{
-                  cursor: "pointer",
-                  borderRadius: "30%",
-                  padding: ".3rem",
-                  background: theme.colors.glassColor,
-                  "&:hover": {
-                    background: theme.colors.configs.revert[theme.palette.mode],
-                  },
-                }}
-                liStyle={{
-                  background: theme.colors.glassColor,
-                }}
-              />
-            </>
-          )
-        )}
+      <Grid container justifyContent={"center"}>
+        <Grid
+          container
+          justifyContent={"center"}
+          item
+          xs={11.5}
+          sm={7}
+          md={6}
+          lg={5}
+          xl={3.5}
+        >
+          {loading ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+              }}
+            >
+              <ClipLoader size={50} color="#3498db" loading={loading} />
+            </div>
+          ) : (
+            data && (
+              <>
+                <RadioButtons
+                  setIsDarkMode={setIsDarkMode}
+                  handleLanguageChange={handleLanguageChange}
+                />
+                <LogoBox />
+                <UserBox data={data} />
+                <UsageBox
+                  type="usage"
+                  value={Number(
+                    ((data?.used_traffic / data?.data_limit) * 100).toFixed(2)
+                  )}
+                  total={formatTraffic(data?.data_limit, t)}
+                  remaining={
+                    data?.data_limit === null
+                      ? formatTraffic(null, t)
+                      : formatTraffic(data?.data_limit - data?.used_traffic, t)
+                  }
+                />
+                <UsageBox
+                  type="time"
+                  value={calculateUsedTimePercentage(
+                    data?.expire || data?.expire_date
+                  )}
+                  remaining={calculateRemainingTime(
+                    data?.expire || data?.expire_date,
+                    t
+                  )}
+                />
+                <Apps subLink={url} />
+                <Configs
+                  title={t("configsList")}
+                  style={{
+                    direction: lang === "fa" ? "rtl" : "ltr",
+                    background: theme.colors.configs[theme.palette.mode],
+                    boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
+                    width: "100%",
+                    border:
+                      theme.palette.mode === "light"
+                        ? "1px solid #ffffff6b"
+                        : "none",
+                    borderRadius: "16px",
+                    paddingY: ".4rem",
+                    color:
+                      theme.palette.mode === "dark"
+                        ? "rgba(255, 255, 255)"
+                        : "rgb(0 0 0)",
+                  }}
+                  iconColor={theme.colors.configs.revert[theme.palette.mode]}
+                  icon={
+                    <LanguageIcon
+                      fontSize="large"
+                      sx={{
+                        marginInlineStart: "1rem",
+                        color: theme.colors.configs.revert[theme.palette.mode],
+                      }}
+                    />
+                  }
+                  configs={dataLinks}
+                  btnStyle={{
+                    cursor: "pointer",
+                    borderRadius: "30%",
+                    padding: ".3rem",
+                    background: theme.colors.glassColor,
+                    "&:hover": {
+                      background:
+                        theme.colors.configs.revert[theme.palette.mode],
+                    },
+                  }}
+                  liStyle={{
+                    background: theme.colors.glassColor,
+                  }}
+                />
+              </>
+            )
+          )}
+        </Grid>
         <ToastContainer
           position="top-right"
           theme="colored"
