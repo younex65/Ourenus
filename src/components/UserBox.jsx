@@ -6,6 +6,8 @@ import QuestionAnswerOutlinedIcon from "@mui/icons-material/QuestionAnswerOutlin
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import QrModal from "./QrModal";
+import QrCodeOutlinedIcon from "@mui/icons-material/QrCodeOutlined";
 
 const UserBox = ({ data }) => {
   const theme = useTheme();
@@ -59,90 +61,142 @@ const UserBox = ({ data }) => {
     }
   };
 
+  const [openQrModal, setOpenQrModal] = useState(false);
+  const [qrLink, setQrLink] = useState("https://example.com");
+
+  const handleQrModalOpen = () => {
+    setOpenQrModal(true);
+  };
+
+  const handleQrModalClose = () => {
+    setOpenQrModal(false);
+  };
+
+  const SubUrl = data?.subscription_url?.includes("https://")
+    ? data?.subscribtion_url
+    : `${window.location.origin}${data?.subscribtion_url}`;
+
+  useEffect(() => {
+    setQrLink(SubUrl);
+  }, [SubUrl]);
+
   return (
-    <BoxS>
-      <Grid
-        item
-        xs={3.5}
-        display="flex"
-        justifyContent="center"
-        sx={{ padding: ".3rem", paddingX: ".5rem" }}
-      >
-        <SupervisedUserCircleIcon
-          fontSize="large"
-          sx={{
-            color: theme.colors.userBox.logoColor[theme.palette.mode],
-            width: "100%",
-            height: "auto",
-          }}
-        />
-      </Grid>
-      <Grid
-        item
-        xs={8.5}
-        display="flex"
-        flexDirection={"column"}
-        sx={{
-          color: theme.colors.BWColor[theme.palette.mode],
-          fontSize: "1.2rem",
-        }}
-      >
+    <>
+      <BoxS>
         <Grid
           item
+          xs={3.5}
+          display="flex"
+          justifyContent="center"
+          sx={{ padding: ".3rem", paddingX: ".5rem" }}
+        >
+          <SupervisedUserCircleIcon
+            fontSize="large"
+            sx={{
+              color: theme.colors.userBox.logoColor[theme.palette.mode],
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={8.5}
+          display="flex"
+          flexDirection={"column"}
           sx={{
             color: theme.colors.BWColor[theme.palette.mode],
             fontSize: "1.2rem",
-            paddingBottom: ".7rem",
-            paddingRight: ".4rem",
-            fontWeight: 500,
           }}
-          xs={12}
-          textAlign={"start"}
         >
-          {data?.username}
-        </Grid>
-        <Grid item display={"flex"} xs={12} justifyContent={"space-around"}>
-          <Grid xs={5} textAlign={"center"} item>
-            <Button
+          <Grid
+            container
+            flexWrap={"nowrap"}
+            paddingBottom={1}
+            alignItems={"baseline"}
+          >
+            <Grid
+              item
               sx={{
-                borderRadius: "50px",
-                backgroundColor: getStatusBackgroundColor(statusData),
-                color: getStatusTextColor(statusData),
-                textTransform: "capitalize",
-                boxShadow: "0 0 3px 0px #99bbaf",
-                width: "90%",
-                fontWeight: "bold",
-                textWrap: "nowrap",
-                fontSize: "small",
+                color: theme.colors.BWColor[theme.palette.mode],
+                fontSize: "1.2rem",
+                paddingBottom: ".7rem",
+                paddingRight: ".4rem",
+                fontWeight: 500,
               }}
+              xs={12}
+              textAlign={"start"}
             >
-              {t(`status.${statusData}`)}
-            </Button>
+              {data?.username}
+            </Grid>
+            <Grid>
+              <Button
+                onClick={handleQrModalOpen}
+                sx={{
+                  background: theme.colors.glass,
+                  color: theme.palette.text.primary,
+                  backdropFilter: "blur(.5rem)",
+                  boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "1rem",
+                  border: "1px solid rgba(255, 255, 255)",
+                  padding: "0.5rem 1rem",
+                  height: "100%",
+                }}
+              >
+                <QrCodeOutlinedIcon fontSize="small" />
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={7} textAlign={"center"}>
-            <Button
-              onClick={() => window.open(import.meta.env.VITE_SUPPORT_URL)}
-              sx={{
-                borderRadius: "50px",
-                backgroundColor:
-                  theme.colors.userBox.supportBox[theme.palette.mode],
-                paddingX: ".5rem",
-                color: "#fff",
-                backdropFilter: "blur(16px)",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-                textTransform: "capitalize",
-                gap: "1rem",
-                width: "90%",
-                fontWeight: "lighter",
-              }}
-            >
-              <QuestionAnswerOutlinedIcon />
-              {t("support")}
-            </Button>
+          <Grid item display={"flex"} xs={12} justifyContent={"space-around"}>
+            <Grid xs={5} textAlign={"center"} item>
+              <Button
+                sx={{
+                  borderRadius: "50px",
+                  backgroundColor: getStatusBackgroundColor(statusData),
+                  color: getStatusTextColor(statusData),
+                  textTransform: "capitalize",
+                  boxShadow: "0 0 3px 0px #99bbaf",
+                  width: "90%",
+                  fontWeight: "bold",
+                  textWrap: "nowrap",
+                  fontSize: "small",
+                }}
+              >
+                {t(`status.${statusData}`)}
+              </Button>
+            </Grid>
+            <Grid item xs={7} textAlign={"center"}>
+              <Button
+                onClick={() => window.open(import.meta.env.VITE_SUPPORT_URL)}
+                sx={{
+                  borderRadius: "50px",
+                  backgroundColor:
+                    theme.colors.userBox.supportBox[theme.palette.mode],
+                  paddingX: ".5rem",
+                  color: "#fff",
+                  backdropFilter: "blur(16px)",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+                  textTransform: "capitalize",
+                  gap: "1rem",
+                  width: "90%",
+                  fontWeight: "lighter",
+                }}
+              >
+                <QuestionAnswerOutlinedIcon />
+                {t("support")}
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
-    </BoxS>
+      </BoxS>
+      <QrModal
+        open={openQrModal}
+        handleClose={handleQrModalClose}
+        title={t("subQRCode")}
+        link={qrLink}
+        id="switch"
+      />
+    </>
   );
 };
 
