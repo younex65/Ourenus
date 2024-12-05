@@ -73,11 +73,21 @@ function App() {
 
   const title = data?.username
     ? `${data.username} Sub Info`
-    : `${import.meta.env.VITE_BRAND_NAME} Sub Info`;
+    : `${import.meta.env.VITE_BRAND_NAME || "Ourenus"} Sub Info`;
 
   const isOffSections = useMemo(() => {
     try {
-      return JSON.parse(import.meta.env.VITE_OFF_SECTIONS);
+      return JSON.parse(
+        import.meta.env.VITE_OFF_SECTIONS || {
+          appsBox: true,
+          logoBox: true,
+          timeBox: true,
+          usageBox: true,
+          userBox: true,
+          supportBox: true,
+          configs: true,
+        }
+      );
     } catch (error) {
       console.error("Failed to parse VITE_OFF_SECTIONS:", error);
       return {};

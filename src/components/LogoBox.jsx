@@ -16,7 +16,10 @@ const LogoBox = () => {
         sx={{ padding: ".3rem", paddingX: ".5rem" }}
       >
         <img
-          src={import.meta.env.VITE_LOGO_SRC}
+          src={
+            import.meta.env.VITE_LOGO_SRC ||
+            "https://raw.githubusercontent.com/MatinDehghanian/public-assets/refs/heads/main/icons/uranus.svg"
+          }
           alt="Logo"
           style={{ width: "100%", height: "auto" }}
         />
@@ -43,7 +46,7 @@ const LogoBox = () => {
         >
           {t("userPanelTitle").replace(
             "{brandName}",
-            import.meta.env.VITE_BRAND_NAME
+            import.meta.env.VITE_BRAND_NAME || "Ourenus"
           )}
         </Grid>
         <Grid
@@ -54,7 +57,7 @@ const LogoBox = () => {
         >
           {t("userPanelWelcome").replace(
             "{brandName}",
-            import.meta.env.VITE_BRAND_NAME
+            import.meta.env.VITE_BRAND_NAME || "Ourenus"
           )}
         </Grid>
       </Grid>

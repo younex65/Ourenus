@@ -167,7 +167,11 @@ const UserBox = ({ data }) => {
             </Grid>
             <Grid item xs={7} textAlign={"center"}>
               <Button
-                onClick={() => window.open(import.meta.env.VITE_SUPPORT_URL)}
+                onClick={() =>
+                  window.open(
+                    import.meta.env.VITE_SUPPORT_URL || "https://t.me/YourID"
+                  )
+                }
                 sx={{
                   borderRadius: "50px",
                   backgroundColor:
