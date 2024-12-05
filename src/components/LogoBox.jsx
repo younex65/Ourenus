@@ -1,7 +1,6 @@
 import { Grid, useTheme } from "@mui/material";
 import BoxS from "./Box";
 import { useTranslation } from "react-i18next";
-import logo from "../assets/vite.svg";
 
 const LogoBox = () => {
   const theme = useTheme();
@@ -16,7 +15,11 @@ const LogoBox = () => {
         justifyContent="center"
         sx={{ padding: ".3rem", paddingX: ".5rem" }}
       >
-        <img src={logo} alt="Logo" style={{ width: "100%", height: "auto" }} />
+        <img
+          src={import.meta.env.VITE_LOGO_SRC}
+          alt="Logo"
+          style={{ width: "100%", height: "auto" }}
+        />
       </Grid>
       <Grid
         item
@@ -38,7 +41,10 @@ const LogoBox = () => {
             paddingBottom: ".7rem",
           }}
         >
-          {t("userPanelTitle")}
+          {t("userPanelTitle").replace(
+            "{brandName}",
+            import.meta.env.VITE_BRAND_NAME
+          )}
         </Grid>
         <Grid
           sx={{
@@ -46,7 +52,10 @@ const LogoBox = () => {
             fontSize: ".9rem",
           }}
         >
-          {t("userPanelWelcome")}
+          {t("userPanelWelcome").replace(
+            "{brandName}",
+            import.meta.env.VITE_BRAND_NAME
+          )}
         </Grid>
       </Grid>
     </BoxS>

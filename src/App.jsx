@@ -70,13 +70,25 @@ function App() {
     ? data?.subscription_url
     : `${window.location.origin}${data?.subscription_url}`;
 
+
+  const title = data?.username
+    ? `${data.username} Sub Info`
+    : `${import.meta.env.VITE_BRAND_NAME} Sub Info`;
+
+  const isOffSections = useMemo(() => {
+    try {
+      return JSON.parse(import.meta.env.VITE_OFF_SECTIONS);
+    } catch (error) {
+      console.error("Failed to parse VITE_OFF_SECTIONS:", error);
+      return {};
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Helmet>
-        <title>
-          {data?.username ? `${data.username} Sub Info` : "Ourenus Sub Info"}
-        </title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Powered by https://github.com/MatinDehghanian"
@@ -111,74 +123,85 @@ function App() {
                   setIsDarkMode={setIsDarkMode}
                   handleLanguageChange={handleLanguageChange}
                 />
-                <LogoBox />
-                <UserBox data={data} />
-                <UsageBox
-                  type="usage"
-                  value={Number(
-                    ((data?.used_traffic / data?.data_limit) * 100).toFixed(2)
-                  )}
-                  total={formatTraffic(data?.data_limit, t)}
-                  remaining={
-                    data?.data_limit === null
-                      ? formatTraffic(null, t)
-                      : formatTraffic(data?.data_limit - data?.used_traffic, t)
-                  }
-                />
-                <UsageBox
-                  type="time"
-                  value={calculateUsedTimePercentage(
-                    data?.expire || data?.expire_date
-                  )}
-                  remaining={calculateRemainingTime(
-                    data?.expire || data?.expire_date,
-                    t
-                  )}
-                />
-                <Apps subLink={url} />
-                <Configs
-                  title={t("configsList")}
-                  style={{
-                    direction: lang === "fa" ? "rtl" : "ltr",
-                    background: theme.colors.configs[theme.palette.mode],
-                    boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
-                    width: "100%",
-                    border:
-                      theme.palette.mode === "light"
-                        ? "1px solid #ffffff6b"
-                        : "none",
-                    borderRadius: "16px",
-                    paddingY: ".4rem",
-                    color:
-                      theme.palette.mode === "dark"
-                        ? "rgba(255, 255, 255)"
-                        : "rgb(0 0 0)",
-                  }}
-                  iconColor={theme.colors.configs.revert[theme.palette.mode]}
-                  icon={
-                    <LanguageIcon
-                      fontSize="large"
-                      sx={{
-                        marginInlineStart: "1rem",
-                        color: theme.colors.configs.revert[theme.palette.mode],
-                      }}
-                    />
-                  }
-                  configs={dataLinks}
-                  btnStyle={{
-                    cursor: "pointer",
-                    borderRadius: "30%",
-                    padding: ".3rem",
-                    background: theme.colors.glassColor,
-                    "&:hover": {
-                      background:
-                        theme.colors.configs.revert[theme.palette.mode],
-                    },
-                  }}
-                  liStyle={{
-                    background: theme.colors.glassColor,
-                  }}
-                />
+                {isOffSections.logoBox && <LogoBox />}
+                {isOffSections.userBox && <UserBox data={data} />}
+                {isOffSections.usageBox && (
+                  <UsageBox
+                    type="usage"
+                    value={Number(
+                      ((data?.used_traffic / data?.data_limit) * 100).toFixed(2)
+                    )}
+                    total={formatTraffic(data?.data_limit, t)}
+                    remaining={
+                      data?.data_limit === null
+                        ? formatTraffic(null, t)
+                        : formatTraffic(
+                            data?.data_limit - data?.used_traffic,
+                            t
+                          )
+                    }
+                  />
+                )}
+                {isOffSections.timeBox && (
+                  <UsageBox
+                    type="time"
+                    value={calculateUsedTimePercentage(
+                      data?.expire || data?.expire_date
+                    )}
+                    remaining={calculateRemainingTime(
+                      data?.expire || data?.expire_date,
+                      t
+                    )}
+                  />
+                )}
+                {isOffSections.appsBox && <Apps subLink={url} />}
+                {isOffSections.configs && (
+                  <Configs
+                    title={t("configsList")}
+                    style={{
+                      direction: lang === "fa" ? "rtl" : "ltr",
+                      background: theme.colors.configs[theme.palette.mode],
+                      boxShadow: "0 0 30px 10px rgba(0, 0, 0, 0.1)",
+                      width: "100%",
+                      border:
+                        theme.palette.mode === "light"
+                          ? "1px solid #ffffff6b"
+                          : "none",
+                      borderRadius: "16px",
+                      paddingY: ".4rem",
+                      color:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255)"
+                          : "rgb(0 0 0)",
+                    }}
+                    iconColor={theme.colors.configs.revert[theme.palette.mode]}
+                    icon={
+                      <LanguageIcon
+                        fontSize="large"
+                        sx={{
+                          marginInlineStart: "1rem",
+                          color:
+                            theme.colors.configs.revert[theme.palette.mode],
+                        }}
+                      />
+                    }
+                    configs={dataLinks}
+                    btnStyle={{
+                      cursor: "pointer",
+                      borderRadius: "30%",
+                      padding: ".3rem",
+                      background: theme.colors.glassColor,
+                      "&:hover": {
+                        background:
+                          theme.colors.configs.revert[theme.palette.mode],
+                      },
+                    }}
+                    liStyle={{
+                      background: theme.colors.glassColor,
+                    }}
+                    isFirst={!isOffSections.appsBox}
+                  />
+                )}
               </>
             )
           )}

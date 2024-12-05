@@ -29,6 +29,7 @@ const Configs = ({
   iconColor,
   btnStyle,
   liStyle,
+  isFirst,
 }) => {
   const filteredLinks = useMemo(() => {
     if (configs && configs[configs.length - 1] === "False") {
@@ -53,13 +54,15 @@ const Configs = ({
   };
   const handleClose = () => setOpen(false);
 
+  const isFirstPadding = isFirst && { paddingTop: "1rem" };
+
   return (
     <>
       <Grid
         justifyContent="space-between"
         xs={11}
         item
-        sx={{ paddingBottom: "1rem" }}
+        sx={{ paddingBottom: "1rem", ...isFirstPadding }}
       >
         <Accordion sx={style}>
           <AccordionSummary
@@ -166,6 +169,7 @@ Configs.propTypes = {
   configs: PropTypes.arrayOf(PropTypes.string).isRequired,
   iconColor: PropTypes.string,
   liStyle: PropTypes.object,
+  isFirst: PropTypes.bool,
 };
 
 export default Configs;

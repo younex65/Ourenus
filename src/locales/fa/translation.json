@@ -17,8 +17,8 @@
     "limited": "محدود شده"
   },
   "support": "پشتیبانی",
-  "userPanelTitle": "پنل کاربری اورانوس",
-  "userPanelWelcome": "به پنل کاربری اورانوس خوش آمدید.",
+  "userPanelTitle": "پنل کاربری {brandName}",
+  "userPanelWelcome": "به پنل کاربری {brandName} خوش آمدید.",
   "operatingSystems": "انتخاب سیستم عامل",
   "configuration": "افرودن به برنامه",
   "download": "دانلود",
