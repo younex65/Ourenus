@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 
+          node-version: 18
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -29,10 +29,10 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Step 5: Create a tag for the release (e.g., v1.0.0 or release-123)
+      # Step 5: Create and push a version tag
       - name: Create GitHub tag
         run: |
-          TAG_NAME="v1.${{ github.run_number }}"
+          TAG_NAME="v0.${{ github.run_number }}"
           git tag $TAG_NAME
           git push origin $TAG_NAME
 
@@ -41,7 +41,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ steps.create-release.outputs.tag }}
-          release_name: Build ${{ github.sha }}
+          tag: v1.${{ github.run_number }}
+          release_name: Release v0.${{ github.run_number }}
           assets: |
-            build/** 
+            build/**
