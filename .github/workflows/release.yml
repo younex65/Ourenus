@@ -3,38 +3,38 @@ name: Build and Release
 on:
   push:
     branches:
-      - main
+      - main 
 
 jobs:
   build:
+    name: Build Project
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      # Step 2: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 18 
 
+      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build the project
+      # Step 4: Build the project
+      - name: Build project
         run: npm run build
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      # Step 5: Publish to GitHub Releases
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          tag: "v${{ github.sha }}-${{ github.run_number }}"
-          name: "Release ${{ github.sha }}-${{ github.run_number }}"
-          body: "Release notes for version ${{ github.sha }}-${{ github.run_number }}"
           token: ${{ secrets.GITHUB_TOKEN }}
-          makeLatest: true
+          tag: ${{ github.sha }}
+          release_name: Build ${{ github.sha }}
+          assets: |
+            build/** 
