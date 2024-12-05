@@ -29,6 +29,10 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # Step 4.5: Verify build output
+      - name: List build directory
+        run: ls -al build/
+
       # Step 5: Create and push a version tag
       - name: Create GitHub tag
         run: |
