@@ -44,4 +44,4 @@ jobs:
           tag: v0.${{ github.run_number }}
           release_name: Release v0.${{ github.run_number }}
           assets: |
-            build/**
+            build/index.html
