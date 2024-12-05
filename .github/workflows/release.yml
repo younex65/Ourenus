@@ -29,12 +29,19 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Step 5: Publish to GitHub Releases
+      # Step 5: Create a tag for the release (e.g., v1.0.0 or release-123)
+      - name: Create GitHub tag
+        run: |
+          TAG_NAME="v1.${{ github.run_number }}"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+
+      # Step 6: Publish to GitHub Releases
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.sha }}
+          tag: ${{ steps.create-release.outputs.tag }}
           release_name: Build ${{ github.sha }}
           assets: |
             build/** 
