@@ -75,7 +75,7 @@ function App() {
       <CssBaseline />
       <Helmet>
         <title>
-          {data?.username ? `${data.username} Sub Info` : "Technoi Sub Info"}
+          {data?.username ? `${data.username} Sub Info` : "Ourenus Sub Info"}
         </title>
         <meta
           name="description"
