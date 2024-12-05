@@ -42,10 +42,8 @@ jobs:
 
       # Step 6: Publish to GitHub Releases
       - name: Create GitHub Release
-        uses: ncipollo/release-action@v1
+        uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v0.${{ github.run_number }}
-          release_name: Release v0.${{ github.run_number }}
-          assets: |
-            "build/index.html"
+          files: build/index.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
