@@ -73,8 +73,8 @@ const UserBox = ({ data }) => {
   };
 
   const SubUrl = data?.subscription_url?.includes("https://")
-    ? data?.subscribtion_url
-    : `${window.location.origin}${data?.subscribtion_url}`;
+    ? data?.subscription_url
+    : `${window.location.origin}${data?.subscription_url}`;
 
   useEffect(() => {
     setQrLink(SubUrl);

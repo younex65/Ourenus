@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 const RadioButtons = ({ setIsDarkMode }) => {
   const themeColors = useTheme();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
   const [isLightMode, setIsLightMode] = useState(
@@ -93,12 +93,12 @@ const RadioButtons = ({ setIsDarkMode }) => {
         <CapsuleButton
           isActive={isLightMode}
           onClick={() => handleThemeChange("light")}
-          icon={"روشن"}
+          icon={t("light")}
         />
         <CapsuleButton
           isActive={!isLightMode}
           onClick={() => handleThemeChange("dark")}
-          icon={"تیره"}
+          icon={t("dark")}
         />
       </Grid>
     </Grid>

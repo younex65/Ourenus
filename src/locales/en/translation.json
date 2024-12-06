@@ -39,5 +39,8 @@
   "negative": "Negative",
   "infinity": "Infinity",
   "subQRCode": "Subscribtion QR Code",
-  "free": "Free"
+  "free": "Free",
+  "light": "Light",
+  "dark": "Dark",
+  "ended": "Ended"
 }

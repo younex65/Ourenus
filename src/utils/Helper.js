@@ -51,52 +51,9 @@ export const extractNameFromConfigURL = (url) => {
   return null;
 };
 
-export const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const tehranOffset = 3.5 * 60 * 1000;
-  const tehranTime = new Date(date.getTime() + tehranOffset);
 
-  const formattedDate = tehranTime.toLocaleDateString("fa-IR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  const formattedTime = tehranTime.toLocaleTimeString("fa-IR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  return `${formattedDate} - ${formattedTime}`;
-};
-
-export const formatExpireDate = (expire) => {
-  if (!expire) return "نامشخص";
-
-  let date;
-  if (typeof expire === "number") {
-    date = new Date(expire * 1000);
-  } else if (typeof expire === "string") {
-    date = new Date(expire);
-  } else {
-    throw new Error("Invalid expire format");
-  }
-
-  const formattedDate = date.toLocaleDateString("fa-IR", {
-    month: "long",
-    day: "numeric",
-  });
-
-  const formattedTime = date.toLocaleTimeString("fa-IR", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  return `${formattedDate} - ${formattedTime}`; 
-};
-
-export const calculateRemainingTime = (expire) => {
-  if (!expire) return "نامشخص";
+export const calculateRemainingTime = (expire, t) => {
+  if (!expire) return t("unknown");
 
   let expireTimestamp;
   if (typeof expire === "number") {
@@ -108,16 +65,17 @@ export const calculateRemainingTime = (expire) => {
   }
 
   const remainingSeconds = expireTimestamp - Math.floor(Date.now() / 1000);
-  if (remainingSeconds <= 0) return "تمام شده";
+  if (remainingSeconds <= 0) return t("ended");
 
   const days = Math.floor(remainingSeconds / (60 * 60 * 24));
   const hours = Math.floor((remainingSeconds % (60 * 60 * 24)) / (60 * 60));
   const minutes = Math.floor((remainingSeconds % (60 * 60)) / 60);
 
-  if (days > 0) return `${days} روز `;
-  if (hours > 0) return `${hours} ساعت`;
-  return `${minutes} دقیقه`;
+  if (days > 0) return `${days} ${t("days")} `;
+  if (hours > 0) return `${hours} ${t("hours")}`;
+  return `${minutes} ${t("minutes")}`;
 };
+
 export const calculateUsedTimePercentage = (expireTimestamp) => {
   let expireTimeInSeconds;
 
