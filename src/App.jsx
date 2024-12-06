@@ -66,43 +66,52 @@ function App() {
     }
   }, [data?.links]);
 
-  const url = data?.subscription_url?.includes("https://")
-    ? data?.subscription_url
-    : `${window.location.origin}${data?.subscription_url}`;
 
+  const getAdjustedUrl = (subURL) => {
+    if (import.meta.env.VITE_IS_HOST) {
+      return subURL.replace(
+        /https?:\/\/[^/]+/,
+        import.meta.env.VITE_PANEL_DOMAIN
+      );
+    } else if (subURL?.includes("https://")) {
+      return subURL;
+    }
+
+    return `${window.location.origin}${subURL}`;
+  };
 
   const title = data?.username
     ? `${data.username} Sub Info`
     : `${import.meta.env.VITE_BRAND_NAME || "Ourenus"} Sub Info`;
 
-    const isOffSections = useMemo(() => {
-      try {
-        const envValue = import.meta.env.VITE_OFF_SECTIONS;
-        if (envValue) {
-          return JSON.parse(envValue);
-        }
-        return {
-          appsBox: true,
-          logoBox: true,
-          timeBox: true,
-          usageBox: true,
-          userBox: true,
-          supportBox: true,
-          configs: true,
-        };
-      } catch (error) {
-        console.error("Failed to parse VITE_OFF_SECTIONS:", error);
-        return {
-          appsBox: true,
-          logoBox: true,
-          timeBox: true,
-          usageBox: true,
-          userBox: true,
-          supportBox: true,
-          configs: true,
-        };
+  const isOffSections = useMemo(() => {
+    try {
+      const envValue = import.meta.env.VITE_OFF_SECTIONS;
+      if (envValue) {
+        return JSON.parse(envValue);
       }
-    }, []);
+      return {
+        appsBox: true,
+        logoBox: true,
+        timeBox: true,
+        usageBox: true,
+        userBox: true,
+        supportBox: true,
+        configs: true,
+      };
+    } catch (error) {
+      console.error("Failed to parse VITE_OFF_SECTIONS:", error);
+      return {
+        appsBox: true,
+        logoBox: true,
+        timeBox: true,
+        usageBox: true,
+        userBox: true,
+        supportBox: true,
+        configs: true,
+      };
+    }
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -144,7 +153,12 @@ function App() {
                   handleLanguageChange={handleLanguageChange}
                 />
                 {isOffSections.logoBox && <LogoBox />}
-                {isOffSections.userBox && <UserBox data={data} />}
+                {isOffSections.userBox && (
+                  <UserBox
+                    data={data}
+                    subLink={getAdjustedUrl(data?.subscription_url)}
+                  />
+                )}
                 {isOffSections.usageBox && (
                   <UsageBox
                     type="usage"
@@ -174,7 +188,9 @@ function App() {
                     )}
                   />
                 )}
-                {isOffSections.appsBox && <Apps subLink={url} />}
+                {isOffSections.appsBox && (
+                  <Apps subLink={getAdjustedUrl(data?.subscription_url)} />
+                )}
                 {isOffSections.configs && (
                   <Configs
                     title={t("configsList")}

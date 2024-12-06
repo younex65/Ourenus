@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import QrModal from "./QrModal";
 import QrCodeOutlinedIcon from "@mui/icons-material/QrCodeOutlined";
 
-const UserBox = ({ data }) => {
+const UserBox = ({ data, subLink }) => {
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -72,20 +72,16 @@ const UserBox = ({ data }) => {
     setOpenQrModal(false);
   };
 
-  const SubUrl = data?.subscription_url?.includes("https://")
-    ? data?.subscription_url
-    : `${window.location.origin}${data?.subscription_url}`;
-
   useEffect(() => {
-    setQrLink(SubUrl);
-  }, [SubUrl]);
+    setQrLink(subLink);
+  }, [subLink]);
 
   return (
     <>
       <BoxS>
         <Grid
           item
-          xs={3.5}
+          xs={3}
           display="flex"
           justifyContent="center"
           sx={{ padding: ".3rem", paddingX: ".5rem" }}
@@ -101,7 +97,7 @@ const UserBox = ({ data }) => {
         </Grid>
         <Grid
           item
-          xs={8.5}
+          xs={8}
           display="flex"
           flexDirection={"column"}
           sx={{
@@ -147,8 +143,19 @@ const UserBox = ({ data }) => {
               </Button>
             </Grid>
           </Grid>
-          <Grid item display={"flex"} xs={12} justifyContent={"space-around"}>
-            <Grid xs={5} textAlign={"center"} item>
+          <Grid
+            item
+            display={"flex"}
+            xs={12}
+            justifyContent={
+              import.meta.env.VITE_SUPPORT_URL ? "space-around" : "flex-start"
+            }
+          >
+            <Grid
+              xs={import.meta.env.VITE_SUPPORT_URL ? 5 : 6}
+              textAlign={"center"}
+              item
+            >
               <Button
                 sx={{
                   borderRadius: "50px",
@@ -165,31 +172,33 @@ const UserBox = ({ data }) => {
                 {t(`status.${statusData}`)}
               </Button>
             </Grid>
-            <Grid item xs={7} textAlign={"center"}>
-              <Button
-                onClick={() =>
-                  window.open(
-                    import.meta.env.VITE_SUPPORT_URL || "https://t.me/YourID"
-                  )
-                }
-                sx={{
-                  borderRadius: "50px",
-                  backgroundColor:
-                    theme.colors.userBox.supportBox[theme.palette.mode],
-                  paddingX: ".5rem",
-                  color: "#fff",
-                  backdropFilter: "blur(16px)",
-                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-                  textTransform: "capitalize",
-                  gap: "1rem",
-                  width: "90%",
-                  fontWeight: "lighter",
-                }}
-              >
-                <QuestionAnswerOutlinedIcon />
-                {t("support")}
-              </Button>
-            </Grid>
+            {import.meta.env.VITE_SUPPORT_URL && (
+              <Grid item xs={7} textAlign={"center"}>
+                <Button
+                  onClick={() =>
+                    window.open(
+                      import.meta.env.VITE_SUPPORT_URL || "https://t.me/YourID"
+                    )
+                  }
+                  sx={{
+                    borderRadius: "50px",
+                    backgroundColor:
+                      theme.colors.userBox.supportBox[theme.palette.mode],
+                    paddingX: ".5rem",
+                    color: "#fff",
+                    backdropFilter: "blur(16px)",
+                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+                    textTransform: "capitalize",
+                    gap: "1rem",
+                    width: "90%",
+                    fontWeight: "lighter",
+                  }}
+                >
+                  <QuestionAnswerOutlinedIcon />
+                  {t("support")}
+                </Button>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </BoxS>
