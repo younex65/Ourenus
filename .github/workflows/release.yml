@@ -37,7 +37,7 @@ jobs:
       - name: Create GitHub tag
         id: create_tag
         run: |
-          TAG_NAME="v0.9.${{ github.run_number }}"
+          TAG_NAME="v0.9.2.${{ github.run_number }}"
           git tag $TAG_NAME
           git push origin $TAG_NAME
           echo "::set-output name=tag_name::$TAG_NAME"
@@ -54,7 +54,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/index.html
+          files: build/**
           tag_name: ${{ steps.create_tag.outputs.tag_name }}
           release_name: "Version ${{ steps.create_tag.outputs.tag_name }}"
           body: ${{ steps.generate_notes.outputs.commits }}
